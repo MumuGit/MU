@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ChildThread/ChildThread.iml" filepath="$PROJECT_DIR$/ChildThread/ChildThread.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Generic/Generic.iml" filepath="$PROJECT_DIR$/Generic/Generic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ListAndQueue/ListAndQueue.iml" filepath="$PROJECT_DIR$/ListAndQueue/ListAndQueue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MU.iml" filepath="$PROJECT_DIR$/MU.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cardslide/cardslide.iml" filepath="$PROJECT_DIR$/cardslide/cardslide.iml" />
+      <module fileurl="file://$PROJECT_DIR$/charts/charts.iml" filepath="$PROJECT_DIR$/charts/charts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/effective/effective.iml" filepath="$PROJECT_DIR$/effective/effective.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gaode/gaode.iml" filepath="$PROJECT_DIR$/gaode/gaode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myglide/myglide.iml" filepath="$PROJECT_DIR$/myglide/myglide.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webview/webview.iml" filepath="$PROJECT_DIR$/webview/webview.iml" />
+    </modules>
+  </component>
+</project>
