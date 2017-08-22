@@ -12,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/effective/effective.iml" filepath="$PROJECT_DIR$/effective/effective.iml" />
       <module fileurl="file://$PROJECT_DIR$/gaode/gaode.iml" filepath="$PROJECT_DIR$/gaode/gaode.iml" />
       <module fileurl="file://$PROJECT_DIR$/myglide/myglide.iml" filepath="$PROJECT_DIR$/myglide/myglide.iml" />
+      <module fileurl="file://$PROJECT_DIR$/refresh/refresh.iml" filepath="$PROJECT_DIR$/refresh/refresh.iml" />
       <module fileurl="file://$PROJECT_DIR$/webview/webview.iml" filepath="$PROJECT_DIR$/webview/webview.iml" />
     </modules>
   </component>

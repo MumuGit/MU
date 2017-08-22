@@ -1,1 +1,1 @@
-include ':app', ':charts', ':webview', ':myglide', ':gaode', ':cardslide', ':Generic', ':ChildThread', ':ListAndQueue', ':effective'
+include ':app', ':charts', ':webview', ':myglide', ':gaode', ':cardslide', ':Generic', ':ChildThread', ':ListAndQueue', ':effective', ':refresh'
