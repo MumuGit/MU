@@ -8,7 +8,7 @@ import android.content.Context;
 
 public class BarLineChartBase {
     public BarLineChartBase(Context context) {
-        super(context);
+        super();
     }
 
 

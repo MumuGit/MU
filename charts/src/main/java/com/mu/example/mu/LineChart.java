@@ -8,6 +8,6 @@ import android.content.Context;
 
 public class LineChart {
     public LineChart(Context context) {
-        super(context);
+        super();
     }
 }

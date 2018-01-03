@@ -3,31 +3,21 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ChildThread/ChildThread.iml" filepath="$PROJECT_DIR$/ChildThread/ChildThread.iml" />
-      <module fileurl="file://D:\MumuGit\MU\ChildThread\ChildThread.iml" filepath="D:\MumuGit\MU\ChildThread\ChildThread.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Dagger2/Dagger2.iml" filepath="$PROJECT_DIR$/Dagger2/Dagger2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Generic/Generic.iml" filepath="$PROJECT_DIR$/Generic/Generic.iml" />
-      <module fileurl="file://D:\MumuGit\MU\Generic\Generic.iml" filepath="D:\MumuGit\MU\Generic\Generic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Kotlin/Kotlin.iml" filepath="$PROJECT_DIR$/Kotlin/Kotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/ListAndQueue/ListAndQueue.iml" filepath="$PROJECT_DIR$/ListAndQueue/ListAndQueue.iml" />
-      <module fileurl="file://D:\MumuGit\MU\ListAndQueue\ListAndQueue.iml" filepath="D:\MumuGit\MU\ListAndQueue\ListAndQueue.iml" />
       <module fileurl="file://$PROJECT_DIR$/MU.iml" filepath="$PROJECT_DIR$/MU.iml" />
-      <module fileurl="file://D:\MumuGit\MU\MU.iml" filepath="D:\MumuGit\MU\MU.iml" />
       <module fileurl="file://$PROJECT_DIR$/Retrofit2/Retrofit2.iml" filepath="$PROJECT_DIR$/Retrofit2/Retrofit2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Rxjava/Rxjava.iml" filepath="$PROJECT_DIR$/Rxjava/Rxjava.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\MumuGit\MU\app\app.iml" filepath="D:\MumuGit\MU\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/cardslide/cardslide.iml" filepath="$PROJECT_DIR$/cardslide/cardslide.iml" />
-      <module fileurl="file://D:\MumuGit\MU\cardslide\cardslide.iml" filepath="D:\MumuGit\MU\cardslide\cardslide.iml" />
       <module fileurl="file://$PROJECT_DIR$/charts/charts.iml" filepath="$PROJECT_DIR$/charts/charts.iml" />
-      <module fileurl="file://D:\MumuGit\MU\charts\charts.iml" filepath="D:\MumuGit\MU\charts\charts.iml" />
       <module fileurl="file://$PROJECT_DIR$/effective/effective.iml" filepath="$PROJECT_DIR$/effective/effective.iml" />
-      <module fileurl="file://D:\MumuGit\MU\effective\effective.iml" filepath="D:\MumuGit\MU\effective\effective.iml" />
       <module fileurl="file://$PROJECT_DIR$/gaode/gaode.iml" filepath="$PROJECT_DIR$/gaode/gaode.iml" />
-      <module fileurl="file://D:\MumuGit\MU\gaode\gaode.iml" filepath="D:\MumuGit\MU\gaode\gaode.iml" />
       <module fileurl="file://$PROJECT_DIR$/myglide/myglide.iml" filepath="$PROJECT_DIR$/myglide/myglide.iml" />
-      <module fileurl="file://D:\MumuGit\MU\myglide\myglide.iml" filepath="D:\MumuGit\MU\myglide\myglide.iml" />
       <module fileurl="file://$PROJECT_DIR$/refresh/refresh.iml" filepath="$PROJECT_DIR$/refresh/refresh.iml" />
-      <module fileurl="file://D:\MumuGit\MU\refresh\refresh.iml" filepath="D:\MumuGit\MU\refresh\refresh.iml" />
       <module fileurl="file://$PROJECT_DIR$/webview/webview.iml" filepath="$PROJECT_DIR$/webview/webview.iml" />
-      <module fileurl="file://D:\MumuGit\MU\webview\webview.iml" filepath="D:\MumuGit\MU\webview\webview.iml" />
     </modules>
   </component>
 </project>

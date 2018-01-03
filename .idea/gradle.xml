@@ -9,7 +9,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ChildThread" />
+            <option value="$PROJECT_DIR$/Dagger2" />
             <option value="$PROJECT_DIR$/Generic" />
+            <option value="$PROJECT_DIR$/Kotlin" />
             <option value="$PROJECT_DIR$/ListAndQueue" />
             <option value="$PROJECT_DIR$/Retrofit2" />
             <option value="$PROJECT_DIR$/Rxjava" />
