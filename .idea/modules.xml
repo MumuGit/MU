@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/Kotlin/Kotlin.iml" filepath="$PROJECT_DIR$/Kotlin/Kotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/ListAndQueue/ListAndQueue.iml" filepath="$PROJECT_DIR$/ListAndQueue/ListAndQueue.iml" />
       <module fileurl="file://$PROJECT_DIR$/MU.iml" filepath="$PROJECT_DIR$/MU.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NetRequest/NetRequest.iml" filepath="$PROJECT_DIR$/NetRequest/NetRequest.iml" />
       <module fileurl="file://$PROJECT_DIR$/Retrofit2/Retrofit2.iml" filepath="$PROJECT_DIR$/Retrofit2/Retrofit2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Rxjava/Rxjava.iml" filepath="$PROJECT_DIR$/Rxjava/Rxjava.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />

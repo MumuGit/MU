@@ -1,0 +1,50 @@
+package com.mu.example.myapplication;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
+
+import javax.inject.Inject;
+
+/**
+ * Created by mu on 2018/1/4.
+ */
+
+public class AActivity extends AppCompatActivity {
+    TextView mTextView;
+
+    @Inject
+    Gson mGson;
+
+
+    // 匹配Module中同样注解的方法
+    @PoetryQualifier("A")
+    @Inject
+    Poetry mPoetry;
+
+    // 匹配Module中同样注解的方法
+    @PoetryQualifier("B")
+    @Inject
+    Poetry mPoetryB;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_a);
+
+        MainApplication.getInstance()
+                .getAComponent()
+                .inject(this);
+
+        mTextView = (TextView) findViewById(R.id.text);
+//        String text = mPoetry.getPemo() + ",mPoetry:" + mPoetry + (mGson == null ? "Gson没被注入" : "Gson已经被注入");
+        String text = mPoetry.getPemo() + ",mPoetryA:" + mPoetry +
+                mPoetryB.getPemo() + ",mPoetryB:" + mPoetryB +
+                (mGson == null ? "Gson没被注入" : "Gson已经被注入");
+
+        mTextView.setText(text);
+    }
+
+}
