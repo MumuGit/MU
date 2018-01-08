@@ -1,5 +1,7 @@
 package com.mu.example.myapplication.http;
 
+import android.support.compat.BuildConfig;
+
 import com.mu.example.myapplication.utils.DebugUtil;
 
 import java.util.concurrent.TimeUnit;
@@ -101,7 +103,7 @@ public class HttpUtils {
          * HEADERS 请求/响应行 + 头
          * BODY 请求/响应行 + 头 + 体
          */
-        if (debug) {
+        if (BuildConfig.DEBUG) {
             // 打印okhttp
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY); // 测试
         } else {
