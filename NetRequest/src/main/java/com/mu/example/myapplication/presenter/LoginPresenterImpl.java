@@ -32,11 +32,13 @@ public class LoginPresenterImpl implements ILoginPresenter, OnLoginListener {
 
     @Override
     public void onLoginSuccess(LoginBean bean) {
-        
+        iLoginView.hideProgress();
+        iLoginView.onSuccess(bean);
     }
 
     @Override
     public void onLoginFailed(String msg, Exception e) {
-
+        iLoginView.hideProgress();
+        iLoginView.showDialogFailed(msg, e);
     }
 }

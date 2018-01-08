@@ -10,7 +10,7 @@ import javax.net.ssl.SSLSession;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -61,7 +61,7 @@ public class HttpUtils {
         builder.client(getOkhttp3Client());//设置okhttp3（重点），不设置走默认的
         builder.baseUrl(apiUrl);//设置远程地址
         builder.addConverterFactory(GsonConverterFactory.create());
-        builder.addCallAdapterFactory(RxJavaCallAdapterFactory.create()); //Rx
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create()); //Rx
         return builder;
     }
 

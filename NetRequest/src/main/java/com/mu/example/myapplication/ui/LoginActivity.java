@@ -76,11 +76,12 @@ public class LoginActivity extends AppCompatActivity implements ILoginView{
 
     @Override
     public void onSuccess(LoginBean bean) {
-
+        DebugUtil.ToastShort(this,"登录成功");
     }
 
     @Override
     public void showDialogFailed(String msg, Exception e) {
+        DebugUtil.ToastShort(this,"登录"+msg);
 
     }
 }

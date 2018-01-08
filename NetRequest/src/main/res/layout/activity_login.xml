@@ -5,18 +5,21 @@
     android:orientation="vertical">
 
     <EditText
+        android:text="yueshi"
         android:id="@+id/et_store"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请输入公司账号" />
 
     <EditText
+        android:text="xiaomeng.jia"
         android:id="@+id/et_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请输入用户名" />
 
     <EditText
+        android:text="xiaomeng.jia"
         android:id="@+id/et_ps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -3,10 +3,10 @@ package com.mu.example.myapplication.http;
 import com.mu.example.myapplication.bean.CommonBean;
 import com.mu.example.myapplication.bean.LoginBean;
 
+import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import rx.Observable;
 
 /**
  * Created by mu on 2018/1/5.
