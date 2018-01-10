@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/AscdescButton" />
             <option value="$PROJECT_DIR$/ChildThread" />
             <option value="$PROJECT_DIR$/Dagger2" />
             <option value="$PROJECT_DIR$/Generic" />
@@ -23,6 +24,7 @@
             <option value="$PROJECT_DIR$/gaode" />
             <option value="$PROJECT_DIR$/myglide" />
             <option value="$PROJECT_DIR$/refresh" />
+            <option value="$PROJECT_DIR$/selectMedia" />
             <option value="$PROJECT_DIR$/webview" />
           </set>
         </option>

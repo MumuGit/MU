@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AscdescButton/AscdescButton.iml" filepath="$PROJECT_DIR$/AscdescButton/AscdescButton.iml" />
       <module fileurl="file://$PROJECT_DIR$/ChildThread/ChildThread.iml" filepath="$PROJECT_DIR$/ChildThread/ChildThread.iml" />
       <module fileurl="file://$PROJECT_DIR$/Dagger2/Dagger2.iml" filepath="$PROJECT_DIR$/Dagger2/Dagger2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Generic/Generic.iml" filepath="$PROJECT_DIR$/Generic/Generic.iml" />
@@ -18,6 +19,7 @@
       <module fileurl="file://$PROJECT_DIR$/gaode/gaode.iml" filepath="$PROJECT_DIR$/gaode/gaode.iml" />
       <module fileurl="file://$PROJECT_DIR$/myglide/myglide.iml" filepath="$PROJECT_DIR$/myglide/myglide.iml" />
       <module fileurl="file://$PROJECT_DIR$/refresh/refresh.iml" filepath="$PROJECT_DIR$/refresh/refresh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/selectMedia/selectMedia.iml" filepath="$PROJECT_DIR$/selectMedia/selectMedia.iml" />
       <module fileurl="file://$PROJECT_DIR$/webview/webview.iml" filepath="$PROJECT_DIR$/webview/webview.iml" />
     </modules>
   </component>
