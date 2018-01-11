@@ -13,10 +13,15 @@ import java.util.List;
  */
 
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
-    List<String> mData;
+
+    interface OnItemClickListener {
+        void onClick(int position, MediaEntity data);
+    }
+
+    List<MediaEntity> mData;
     Context context;
 
-    public MyAdapter(List<String> mData, Context context) {
+    public MyAdapter(List<MediaEntity> mData, Context context) {
         this.mData = mData;
         this.context = context;
     }
@@ -29,11 +34,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-
+        holder.bind(mData.get(position), context);
     }
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return 10;
     }
 }
