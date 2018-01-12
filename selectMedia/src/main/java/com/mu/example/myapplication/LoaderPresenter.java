@@ -21,6 +21,11 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
     private Context mContext;
     private LoaderManager loaderManager;
     private static final int LOAD_PHOTO = 0;
+    public static String mBucketId = String.valueOf(Integer.MIN_VALUE);
+    public boolean mHasMore = true;
+    public static final int LIMIT = 23;
+    private int mPage = 0;
+
     private static final String[] PHOTO_PROJECTION = {
             MediaStore.Images.Media.DATA,
             MediaStore.Images.Media.SIZE,
@@ -44,6 +49,11 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
         loaderManager.initLoader(LOAD_PHOTO, null, this);
     }
 
+    public void getData() {
+        mPage++;
+        loaderManager.restartLoader(LOAD_PHOTO, null, this);
+    }
+
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Uri baseUri;
@@ -51,7 +61,7 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
         String select = VIDEO_PROJECTION[1] + ">0 and " + VIDEO_PROJECTION[2] + "=? or "
                 + VIDEO_PROJECTION[2] + "=?";
         String[] selectArgs = {"video/mp4"};
-        String sort = VIDEO_PROJECTION[3] + " DESC";
+        String sort = VIDEO_PROJECTION[3] + " DESC LIMIT " + LIMIT + " OFFSET " + LIMIT*mPage;
         return new CursorLoader(mContext, baseUri, VIDEO_PROJECTION, select, selectArgs, sort);
 //        baseUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 //        String select = PHOTO_PROJECTION[1] + ">0 and " + PHOTO_PROJECTION[2] + "=? or "
@@ -64,7 +74,13 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 //        mActivity.updateData(getImageFile(data));
-        mActivity.updateData(getVideoFile(data));
+        List files = getVideoFile(data);
+        if (files != null && files.size() >= LIMIT) {
+            mHasMore = true;
+        } else {
+            mHasMore = false;
+        }
+        mActivity.updateData(files);
     }
 
     @Override
@@ -109,4 +125,6 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
         }
         return result;
     }
+
+
 }

@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/AscdescButton/AscdescButton.iml" filepath="$PROJECT_DIR$/AscdescButton/AscdescButton.iml" />
       <module fileurl="file://$PROJECT_DIR$/ChildThread/ChildThread.iml" filepath="$PROJECT_DIR$/ChildThread/ChildThread.iml" />
       <module fileurl="file://$PROJECT_DIR$/Dagger2/Dagger2.iml" filepath="$PROJECT_DIR$/Dagger2/Dagger2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Exoplayer2.x/Exoplayer2.x.iml" filepath="$PROJECT_DIR$/Exoplayer2.x/Exoplayer2.x.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GSYVideoPlayer/GSYVideoPlayer.iml" filepath="$PROJECT_DIR$/GSYVideoPlayer/GSYVideoPlayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/Generic/Generic.iml" filepath="$PROJECT_DIR$/Generic/Generic.iml" />
       <module fileurl="file://$PROJECT_DIR$/Kotlin/Kotlin.iml" filepath="$PROJECT_DIR$/Kotlin/Kotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/ListAndQueue/ListAndQueue.iml" filepath="$PROJECT_DIR$/ListAndQueue/ListAndQueue.iml" />

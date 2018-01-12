@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoaderActivity" />
+        <activity android:name=".PreviewVideoActivity" />
     </application>
 
 </manifest>

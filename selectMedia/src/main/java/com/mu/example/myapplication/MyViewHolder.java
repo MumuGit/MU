@@ -26,4 +26,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageUtils.displayImageFromFile(context, new File(data.getLocalPath()), imageView);
 
     }
+
+    public void setItemClick(View.OnClickListener clickListener) {
+        itemView.setOnClickListener(clickListener);
+    }
 }
