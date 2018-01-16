@@ -2,7 +2,6 @@ package com.mu.example.myapplication;
 
 import android.content.Context;
 
-import com.ybslux.client.weight.recyclerbase.BaseAdapter;
 
 import java.util.List;
 

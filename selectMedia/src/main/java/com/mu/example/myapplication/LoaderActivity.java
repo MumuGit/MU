@@ -22,6 +22,7 @@ public class LoaderActivity extends AppCompatActivity {
     MyAdapter.OnItemClickListener adapterItemClick = new MyAdapter.OnItemClickListener() {
         @Override
         public void onClick(int position, MediaEntity data) {
+
             Intent intent = new Intent(LoaderActivity.this, PreviewVideoActivity.class);
             Bundle bundle = new Bundle();
             bundle.putParcelable("data", (Parcelable) data);

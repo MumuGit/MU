@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ybslux.client.weight.recyclerbase.BaseViewHolder;
 
 /**
  * Created by mu on 2018/1/9.
