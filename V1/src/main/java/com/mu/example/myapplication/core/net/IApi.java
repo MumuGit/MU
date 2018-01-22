@@ -35,5 +35,5 @@ public interface IApi {
      * 获取短信验证码
      */
     @POST(SMS_CREATE)
-    Observable<Member> sms_create(@QueryMap Map param);
+    public Observable<Member> sms_create(@QueryMap Map<String,String> param);
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="UnderLineTextView">
+        <attr name="line_height" format="dimension" />
+        <attr name="line_gap" format="dimension" />
+    </declare-styleable>
+</resources>

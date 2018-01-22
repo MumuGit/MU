@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/AscdescButton" />
+            <option value="$PROJECT_DIR$/CacheFile" />
             <option value="$PROJECT_DIR$/ChildThread" />
             <option value="$PROJECT_DIR$/Dagger2" />
             <option value="$PROJECT_DIR$/Exoplayer2.x" />
@@ -19,6 +20,7 @@
             <option value="$PROJECT_DIR$/NetRequest" />
             <option value="$PROJECT_DIR$/Retrofit2" />
             <option value="$PROJECT_DIR$/Rxjava" />
+            <option value="$PROJECT_DIR$/UnderLineText" />
             <option value="$PROJECT_DIR$/V1" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/cardslide" />
