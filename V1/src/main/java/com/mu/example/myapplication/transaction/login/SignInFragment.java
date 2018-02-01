@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.mu.example.myapplication.R;
-import com.mu.example.myapplication.model.Member;
+import com.mu.example.myapplication.model.User;
 import com.mu.example.myapplication.util.HttpUtil;
 
 import java.util.HashMap;
@@ -46,14 +46,14 @@ public class SignInFragment extends Fragment {
                 Map<String, String> param = new HashMap();
                 param.put("mobile", phone.getText().toString());
                 HttpUtil.getApi().sms_create(param).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Member>() {
+                        .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<User>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Member value) {
+                    public void onNext(User value) {
 
                     }
 

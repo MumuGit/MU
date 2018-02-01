@@ -4,7 +4,7 @@ package com.mu.example.myapplication.model;
  * Created by mu on 2018/1/16.
  */
 
-public class Member {
+public class User {
     private String user_id;
     private String password;
     private String nickname;

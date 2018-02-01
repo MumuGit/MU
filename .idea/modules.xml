@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AddressBook/AddressBook.iml" filepath="$PROJECT_DIR$/AddressBook/AddressBook.iml" />
       <module fileurl="file://$PROJECT_DIR$/AscdescButton/AscdescButton.iml" filepath="$PROJECT_DIR$/AscdescButton/AscdescButton.iml" />
       <module fileurl="file://$PROJECT_DIR$/CacheFile/CacheFile.iml" filepath="$PROJECT_DIR$/CacheFile/CacheFile.iml" />
       <module fileurl="file://$PROJECT_DIR$/ChildThread/ChildThread.iml" filepath="$PROJECT_DIR$/ChildThread/ChildThread.iml" />

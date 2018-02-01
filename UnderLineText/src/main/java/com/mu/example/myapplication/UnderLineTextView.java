@@ -36,7 +36,7 @@ public class UnderLineTextView extends TextView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Paint linePaint = getPaint();
-        linePaint.setColor(getResources().getColor(R.color.main_text_color_fouce_red));
+        linePaint.setColor(getResources().getColor(android.R.color.black));
         Rect lineRect = new Rect(getLeft(), getBottom() - mLineHeight, getRight(), getBottom());
         canvas.drawRect(lineRect, linePaint);
     }

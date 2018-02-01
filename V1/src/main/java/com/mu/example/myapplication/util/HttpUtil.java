@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 
+import com.google.gson.Gson;
 import com.mu.example.myapplication.App;
 import com.mu.example.myapplication.core.net.IApi;
 
@@ -17,10 +18,12 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.FormBody;
 import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okio.Buffer;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -34,9 +37,12 @@ public class HttpUtil {
     private static final String POST = "POST";
     private static final String GET = "GET";
     public static String appType = "biz";
+    private Gson mGson;
+    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private HttpUtil() {
         mApiImp = getRetrofitBuilder().build().create(IApi.class);
+        mGson = new Gson();
     }
 
     private static class Holder {
@@ -120,12 +126,24 @@ public class HttpUtil {
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
             String method = request.method();
+            HashMap newParams = null;
             if (POST.equalsIgnoreCase(method)) {
                 RequestBody body = request.body();
                 if (body instanceof FormBody) {
                     FormBody.Builder formBuilder = new FormBody.Builder();
-                } else {
 
+                } else {
+                    Buffer buffer = new Buffer();
+                    body.writeTo(buffer);
+                    String oldParamsJson = buffer.readUtf8();
+                    newParams = mGson.fromJson(oldParamsJson, HashMap.class);
+                    if (newParams == null) {
+                        newParams = new HashMap();
+                    }
+                    newParams.putAll(getPublicParams());
+                    String newJsonParams = mGson.toJson(newParams);
+                    request = request.newBuilder().post(RequestBody.create(JSON,
+                            newJsonParams)).build();
                 }
             }
             return chain.proceed(request);

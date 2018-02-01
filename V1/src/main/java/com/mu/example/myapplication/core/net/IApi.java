@@ -1,10 +1,12 @@
 package com.mu.example.myapplication.core.net;
 
-import com.mu.example.myapplication.model.Member;
+import com.mu.example.myapplication.model.User;
 
 import java.util.Map;
 
 import io.reactivex.Observable;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 
@@ -29,11 +31,12 @@ public interface IApi {
      * 短信登录
      */
     @POST(ACCOUNT_LOGIN_SMS)
-    Observable<Member> login_sms(@QueryMap Map param);
+    Observable<User> login_sms(@QueryMap Map param);
 
     /**
      * 获取短信验证码
      */
     @POST(SMS_CREATE)
-    public Observable<Member> sms_create(@QueryMap Map<String,String> param);
+    @FormUrlEncoded
+    Observable<User> sms_create(@FieldMap Map<String, String> param);
 }
