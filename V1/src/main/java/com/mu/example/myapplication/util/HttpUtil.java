@@ -1,5 +1,6 @@
 package com.mu.example.myapplication.util;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -9,6 +10,8 @@ import android.telephony.TelephonyManager;
 import com.google.gson.Gson;
 import com.mu.example.myapplication.App;
 import com.mu.example.myapplication.core.net.IApi;
+import com.mu.example.myapplication.core.permission.PermissionUtil;
+import com.mu.example.myapplication.core.permission.RequsetCodeConstant;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -93,14 +96,26 @@ public class HttpUtil {
     }
 
     private static String[] getDeviceIDAndDeviceName() {
-        String[] result = new String[2];
-        TelephonyManager telephonyManager = (TelephonyManager) App.getApplication().
+        final String[] result = new String[2];
+        final TelephonyManager telephonyManager = (TelephonyManager) App.getApplication().
                 getSystemService(Context.TELEPHONY_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            if (ActivityCompat.checkSelfPermission(App.getApplication(),
-//                    Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-//            }
-            result[0] = telephonyManager.getImei();
+            PermissionUtil.permission(RequsetCodeConstant.PUBLIC_PARAM).success(new PermissionUtil.IPermissionSuccess() {
+                @SuppressLint({"MissingPermission", "NewApi"})
+                @Override
+                public void onSuccess() {
+                    result[0] = telephonyManager.getImei();
+
+                }
+            }).fail(new PermissionUtil.IPermissionFail() {
+                @SuppressLint("MissingPermission")
+                @Override
+                public void onFail(String refusePermission) {
+                    result[0] = telephonyManager.getImei();
+
+                }
+            }).request();
+
         } else {
             result[0] = telephonyManager.getDeviceId();
         }
@@ -130,8 +145,12 @@ public class HttpUtil {
             if (POST.equalsIgnoreCase(method)) {
                 RequestBody body = request.body();
                 if (body instanceof FormBody) {
-                    FormBody.Builder formBuilder = new FormBody.Builder();
-
+                    newParams = new HashMap();
+                    FormBody formBody = (FormBody) body;
+                    for (int i = 0; i < formBody.size(); i++) {
+                        newParams.put(formBody.encodedName(i),
+                                formBody.encodedValue(i));
+                    }
                 } else {
                     Buffer buffer = new Buffer();
                     body.writeTo(buffer);
@@ -140,11 +159,12 @@ public class HttpUtil {
                     if (newParams == null) {
                         newParams = new HashMap();
                     }
-                    newParams.putAll(getPublicParams());
-                    String newJsonParams = mGson.toJson(newParams);
-                    request = request.newBuilder().post(RequestBody.create(JSON,
-                            newJsonParams)).build();
+
                 }
+                newParams.putAll(getPublicParams());
+                String newJsonParams = mGson.toJson(newParams);
+                request = request.newBuilder().post(RequestBody.create(JSON,
+                        newJsonParams)).build();
             }
             return chain.proceed(request);
         }

@@ -20,4 +20,5 @@ public class SignInActivity extends AppCompatActivity {
         Fragment fragment = new SignInFragment();
         FragmentUtil.addFragment(getSupportFragmentManager(), fragment, R.id.container_fragment);
     }
+
 }
