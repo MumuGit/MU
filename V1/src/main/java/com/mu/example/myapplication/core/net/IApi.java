@@ -38,5 +38,5 @@ public interface IApi {
      */
     @POST(SMS_CREATE)
     @FormUrlEncoded
-    Observable<User> sms_create(@FieldMap Map<String, String> param);
+    Observable<Void> sms_create(@FieldMap Map<String, String> param);
 }

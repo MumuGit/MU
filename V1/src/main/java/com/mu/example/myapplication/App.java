@@ -16,6 +16,7 @@ public class App extends Application implements Application.ActivityLifecycleCal
     public void onCreate() {
         super.onCreate();
         mApplication = this;
+        registerActivityLifecycleCallbacks(this);
     }
 
     public static Application getApplication() {

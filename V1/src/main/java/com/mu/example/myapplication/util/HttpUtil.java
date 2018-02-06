@@ -95,30 +95,35 @@ public class HttpUtil {
         return stringBuilder.toString();
     }
 
+
     private static String[] getDeviceIDAndDeviceName() {
-        final String[] result = new String[2];
         final TelephonyManager telephonyManager = (TelephonyManager) App.getApplication().
                 getSystemService(Context.TELEPHONY_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            PermissionUtil.permission(RequsetCodeConstant.PUBLIC_PARAM).success(new PermissionUtil.IPermissionSuccess() {
-                @SuppressLint({"MissingPermission", "NewApi"})
-                @Override
-                public void onSuccess() {
-                    result[0] = telephonyManager.getImei();
-
+        String[] result = new String[2];
+        final String[] id = {null};
+        PermissionUtil.permission(RequsetCodeConstant.PUBLIC_PARAM).success(new PermissionUtil.IPermissionSuccess() {
+            @SuppressLint({"MissingPermission"})
+            @Override
+            public void onSuccess() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    id[0] = telephonyManager.getImei();
+                } else {
+                    id[0] = "00000000000000000000";
                 }
-            }).fail(new PermissionUtil.IPermissionFail() {
-                @SuppressLint("MissingPermission")
-                @Override
-                public void onFail(String refusePermission) {
-                    result[0] = telephonyManager.getImei();
-
+            }
+        }).fail(new PermissionUtil.IPermissionFail() {
+            @SuppressLint("MissingPermission")
+            @Override
+            public void onFail(String refusePermission) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    id[0] = telephonyManager.getImei();
+                } else {
+                    id[0] = telephonyManager.getDeviceId();
                 }
-            }).request();
+            }
+        }).request();
 
-        } else {
-            result[0] = telephonyManager.getDeviceId();
-        }
+        result[0] = id[0];
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         result[1] = bluetoothAdapter.getName();
         return result;

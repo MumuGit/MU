@@ -1,6 +1,5 @@
 package com.mu.example.myapplication.core.permission;
 
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -9,30 +8,29 @@ import com.mu.example.myapplication.App;
 import com.mu.example.myapplication.util.ToastUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by mu on 2018/2/5.
  */
 
 public class PermissionUtil {
-    private Activity mActivity;
     private String[] mPermission;
     private int mRequestCode;
     private IPermissionSuccess mPermissionSuccess;
     private IPermissionFail mPermissionFail;
     private String[] mUnauthorizedPermission;
+    private static Map<String, PermissionUtil> permissionMap = new HashMap<>();
 
-    public PermissionUtil(Activity activity) {
-        mActivity = activity;
-    }
+    public PermissionUtil() {
 
-    public static PermissionUtil with(Activity activity) {
-        return new PermissionUtil(activity);
     }
 
     public static PermissionUtil permission(String[] permission) {
-        PermissionUtil permissionUtil = new PermissionUtil(App.mCurrentActivity);
+        PermissionUtil permissionUtil = new PermissionUtil();
         permissionUtil.mPermission = permission;
+        permissionMap.put(App.mCurrentActivity.getClass().getSimpleName(), permissionUtil);
         return permissionUtil;
     }
 
@@ -46,41 +44,52 @@ public class PermissionUtil {
         return this;
     }
 
+    public PermissionUtil code(int code) {
+        mRequestCode = code;
+        return this;
+    }
+
     public void request() {
         if (mPermission.length != 0) {
             requestPermssion();
         } else {
             ToastUtil.ToastShort("没有要请求的权限");
         }
+
     }
 
     private void requestPermssion() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !hasPermission()) {
-            mActivity.requestPermissions(mPermission, mRequestCode);
+            App.mCurrentActivity.requestPermissions(mPermission, mRequestCode);
         } else {
             mPermissionSuccess.onSuccess();
         }
     }
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == mRequestCode) {
-            for (int i = 0; i < grantResults.length; i++) {
-                if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
-                    mPermissionFail.onFail(permissions[i]);
-                    return;
+    public static void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        String key = App.mCurrentActivity.getClass().getSimpleName();
+
+        PermissionUtil instance = permissionMap.get(key);
+        if (instance != null) {
+            if (requestCode == instance.mRequestCode) {
+                for (int i = 0; i < grantResults.length; i++) {
+                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                        instance.mPermissionFail.onFail(permissions[i]);
+                        return;
+                    }
                 }
+                instance.mPermissionSuccess.onSuccess();
             }
-            mPermissionSuccess.onSuccess();
         }
+        permissionMap.remove(key);
 
     }
 
     private boolean hasPermission() {
         ArrayList<String> permissionList = new ArrayList<String>();
-
         for (String permission : mPermission) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (mActivity.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+                if (App.mCurrentActivity.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
                     permissionList.add(permission);
                 }
             }
