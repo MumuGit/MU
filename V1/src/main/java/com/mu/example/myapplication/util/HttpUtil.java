@@ -6,16 +6,24 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.mu.example.myapplication.App;
+import com.mu.example.myapplication.C;
 import com.mu.example.myapplication.core.net.IApi;
 import com.mu.example.myapplication.core.permission.PermissionUtil;
 import com.mu.example.myapplication.core.permission.RequsetCodeConstant;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -89,7 +97,7 @@ public class HttpUtil {
     private static String getRandom(int n) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < n; i++) {
-            int tem = (int) Math.random() * 10;
+            int tem = (int) (Math.random() * 10);
             stringBuilder.append(tem);
         }
         return stringBuilder.toString();
@@ -107,22 +115,27 @@ public class HttpUtil {
             public void onSuccess() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     id[0] = telephonyManager.getImei();
+
                 } else {
-                    id[0] = "00000000000000000000";
+                    id[0] = telephonyManager.getDeviceId();
                 }
+                if (TextUtils.isEmpty(id[0])) {
+                    id[0] = "000000000000000";
+                }
+                C.App.WAIT_ID = false;
             }
         }).fail(new PermissionUtil.IPermissionFail() {
             @SuppressLint("MissingPermission")
             @Override
             public void onFail(String refusePermission) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    id[0] = telephonyManager.getImei();
-                } else {
-                    id[0] = telephonyManager.getDeviceId();
-                }
+                id[0] = "000000000000000";
+                C.App.WAIT_ID = false;
             }
         }).request();
+        while (C.App.WAIT_ID) {
 
+        }
+        C.App.WAIT_ID = true;
         result[0] = id[0];
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         result[1] = bluetoothAdapter.getName();
@@ -139,6 +152,97 @@ public class HttpUtil {
         }
         return versionName;
     }
+
+    public static Map<String, String> getAllParam(Map<String, String> params) {
+        Map<String, String> map = getPublicParams();
+        String random = map.get("random");
+        map.put("random", encryptToSHA1(random));
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            map.put(entry.getKey(), entry.getValue());
+        }
+        String sign = signGenerate(map);
+        map.put("sign", sign);
+        map.put("random", random);
+        return map;
+    }
+
+    public static String signGenerate(Map<String, String> map) {
+        Map<String, String> tempMap = zDSort(map);
+        StringBuilder sign = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : tempMap.entrySet()) {
+
+            sign.append("&" + entry.getKey() + "=" + entry.getValue());
+
+        }
+        sign.append("&key=7C4l7JLaM3Fq5biQurtmk9nFS");
+        String s = toUpperCase(encryptToSHA1(sign.toString()));
+
+        return s;
+    }
+
+    public static String toUpperCase(String s) {
+        return s.toUpperCase();
+    }
+
+    interface IdListener {
+        void OnIdGetListener();
+    }
+
+    /**
+     * 字典升序排序
+     *
+     * @param map
+     * @return
+     */
+    public static Map<String, String> zDSort(Map<String, String> map) {
+        Map<String, String> tempMap = new LinkedHashMap<String, String>();
+        Collection<String> keyset = map.keySet();
+
+        List list = new ArrayList<String>(keyset);
+
+        Collections.sort(list);
+        //这种打印出的字符串顺序和微信官网提供的字典序顺序是一致的
+        for (int i = 0; i < list.size(); i++) {
+            tempMap.put((String) list.get(i), map.get(list.get(i)));
+        }
+
+        return tempMap;
+    }
+
+    /**
+     * sha1加密
+     *
+     * @param info
+     * @return
+     */
+    public static String encryptToSHA1(String info) {
+        byte[] digesta = null;
+        try {
+            MessageDigest alga = MessageDigest.getInstance("SHA-1");
+            alga.update(info.getBytes());
+            digesta = alga.digest();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        String rs = byte2hex(digesta);
+        return rs;
+    }
+
+    public static String byte2hex(byte[] b) {
+        String hs = "";
+        String stmp = "";
+        for (int n = 0; n < b.length; n++) {
+            stmp = (java.lang.Integer.toHexString(b[n] & 0XFF));
+            if (stmp.length() == 1) {
+                hs = hs + "0" + stmp;
+            } else {
+                hs = hs + stmp;
+            }
+        }
+        return hs;
+    }
+
 
     class ParamInterceptor implements Interceptor {
 
@@ -164,14 +268,15 @@ public class HttpUtil {
                     if (newParams == null) {
                         newParams = new HashMap();
                     }
-
                 }
-                newParams.putAll(getPublicParams());
+                newParams = (HashMap) getAllParam(newParams);
                 String newJsonParams = mGson.toJson(newParams);
                 request = request.newBuilder().post(RequestBody.create(JSON,
                         newJsonParams)).build();
+                return chain.proceed(request);
+            } else {
+                return chain.proceed(request);
             }
-            return chain.proceed(request);
         }
     }
 

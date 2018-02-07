@@ -68,20 +68,20 @@ public class PermissionUtil {
 
     public static void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         String key = App.mCurrentActivity.getClass().getSimpleName();
-
         PermissionUtil instance = permissionMap.get(key);
         if (instance != null) {
             if (requestCode == instance.mRequestCode) {
                 for (int i = 0; i < grantResults.length; i++) {
                     if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
                         instance.mPermissionFail.onFail(permissions[i]);
+                        permissionMap.remove(key);
                         return;
                     }
                 }
                 instance.mPermissionSuccess.onSuccess();
+                permissionMap.remove(key);
             }
         }
-        permissionMap.remove(key);
 
     }
 

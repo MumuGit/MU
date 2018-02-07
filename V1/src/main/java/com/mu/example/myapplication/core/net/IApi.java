@@ -1,5 +1,6 @@
 package com.mu.example.myapplication.core.net;
 
+import com.mu.example.myapplication.model.Content;
 import com.mu.example.myapplication.model.User;
 
 import java.util.Map;
@@ -38,5 +39,5 @@ public interface IApi {
      */
     @POST(SMS_CREATE)
     @FormUrlEncoded
-    Observable<Void> sms_create(@FieldMap Map<String, String> param);
+    Observable<Content> sms_create(@FieldMap Map<String, String> param);
 }
