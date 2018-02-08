@@ -4,7 +4,7 @@ package com.mu.example.myapplication.model;
  * Created by mu on 2018/1/16.
  */
 
-public class Sms {
+public class SMSContent {
     public int sms_id;
 
     public int getSms_id() {

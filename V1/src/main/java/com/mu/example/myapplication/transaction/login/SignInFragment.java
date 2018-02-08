@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.mu.example.myapplication.R;
-import com.mu.example.myapplication.model.Content;
+import com.mu.example.myapplication.model.SMSResponse;
 import com.mu.example.myapplication.util.HttpUtil;
 
 import java.util.HashMap;
@@ -46,28 +46,25 @@ public class SignInFragment extends Fragment {
                 Map<String, String> param = new HashMap();
                 param.put("mobile", phone.getText().toString());
                 HttpUtil.getApi().sms_create(param).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Content>() {
+                        .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<SMSResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Content value) {
-                        int a=1;
-                        a=0;
+                    public void onNext(SMSResponse value) {
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        int a=1;
-                        a=0;
+
                     }
 
                     @Override
                     public void onComplete() {
-                        int a=1;
-                        a=0;
+
                     }
                 });
             }

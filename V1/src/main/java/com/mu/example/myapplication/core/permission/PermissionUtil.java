@@ -5,10 +5,14 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 
 import com.mu.example.myapplication.App;
+import com.mu.example.myapplication.core.ui.poplist.PopListUtil;
+import com.mu.example.myapplication.core.ui.poplist.permission.PermissionAdapter;
+import com.mu.example.myapplication.util.HandlerUtil;
 import com.mu.example.myapplication.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,8 +26,9 @@ public class PermissionUtil {
     private IPermissionFail mPermissionFail;
     private String[] mUnauthorizedPermission;
     private static Map<String, PermissionUtil> permissionMap = new HashMap<>();
+    private List<String> mExplain = new ArrayList<>();
 
-    public PermissionUtil() {
+    private PermissionUtil() {
 
     }
 
@@ -49,6 +54,11 @@ public class PermissionUtil {
         return this;
     }
 
+    public PermissionUtil explain(String explain) {
+        mExplain.add(explain);
+        return this;
+    }
+
     public void request() {
         if (mPermission.length != 0) {
             requestPermssion();
@@ -60,7 +70,16 @@ public class PermissionUtil {
 
     private void requestPermssion() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !hasPermission()) {
-            App.mCurrentActivity.requestPermissions(mPermission, mRequestCode);
+            HandlerUtil.getInstance().postTask(new Runnable() {
+                @Override
+                public void run() {
+                    PopListUtil.with(App.mCurrentActivity).setAdapter(new PermissionAdapter(App.mCurrentActivity))
+                            .updateData(mExplain).show();
+                }
+            });
+
+
+//            App.mCurrentActivity.requestPermissions(mUnauthorizedPermission, mRequestCode);
         } else {
             mPermissionSuccess.onSuccess();
         }

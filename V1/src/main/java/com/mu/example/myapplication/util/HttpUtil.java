@@ -13,7 +13,6 @@ import com.mu.example.myapplication.App;
 import com.mu.example.myapplication.C;
 import com.mu.example.myapplication.core.net.IApi;
 import com.mu.example.myapplication.core.permission.PermissionUtil;
-import com.mu.example.myapplication.core.permission.RequsetCodeConstant;
 
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -28,6 +27,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.FormBody;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -109,13 +109,12 @@ public class HttpUtil {
                 getSystemService(Context.TELEPHONY_SERVICE);
         String[] result = new String[2];
         final String[] id = {null};
-        PermissionUtil.permission(RequsetCodeConstant.PUBLIC_PARAM).success(new PermissionUtil.IPermissionSuccess() {
+        PermissionUtil.permission(C.RequestCode.PUBLIC_PARAM).success(new PermissionUtil.IPermissionSuccess() {
             @SuppressLint({"MissingPermission"})
             @Override
             public void onSuccess() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     id[0] = telephonyManager.getImei();
-
                 } else {
                     id[0] = telephonyManager.getDeviceId();
                 }
@@ -131,7 +130,7 @@ public class HttpUtil {
                 id[0] = "000000000000000";
                 C.App.WAIT_ID = false;
             }
-        }).request();
+        }).explain("请交出权限").request();
         while (C.App.WAIT_ID) {
 
         }
@@ -183,10 +182,6 @@ public class HttpUtil {
 
     public static String toUpperCase(String s) {
         return s.toUpperCase();
-    }
-
-    interface IdListener {
-        void OnIdGetListener();
     }
 
     /**
@@ -250,16 +245,32 @@ public class HttpUtil {
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
             String method = request.method();
-            HashMap newParams = null;
-            if (POST.equalsIgnoreCase(method)) {
+            HashMap<String, String> newParams = new HashMap();
+            if (GET.equalsIgnoreCase(method)) {
+                //添加公共参数
+                HttpUrl httpUrl = request.url()
+                        .newBuilder()
+                        .addQueryParameter("clienttype", "1")
+                        .addQueryParameter("imei", "imei")
+                        .addQueryParameter("version", "VersionName")
+                        .addQueryParameter("timestamp", String.valueOf(System.currentTimeMillis()))
+                        .build();
+                request = request.newBuilder().url(httpUrl).build();
+            } else if (POST.equalsIgnoreCase(method)) {
                 RequestBody body = request.body();
                 if (body instanceof FormBody) {
-                    newParams = new HashMap();
                     FormBody formBody = (FormBody) body;
                     for (int i = 0; i < formBody.size(); i++) {
                         newParams.put(formBody.encodedName(i),
                                 formBody.encodedValue(i));
                     }
+                    newParams = (HashMap) getAllParam(newParams);
+                    FormBody.Builder formBodyBuilder = new FormBody.Builder();
+
+                    for (Map.Entry<String, String> entry : newParams.entrySet()) {
+                        formBodyBuilder.addEncoded(entry.getKey(), entry.getValue());
+                    }
+                    request = request.newBuilder().post(formBodyBuilder.build()).build();
                 } else {
                     Buffer buffer = new Buffer();
                     body.writeTo(buffer);
@@ -268,15 +279,13 @@ public class HttpUtil {
                     if (newParams == null) {
                         newParams = new HashMap();
                     }
+                    newParams = (HashMap) getAllParam(newParams);
+                    String newJsonParams = mGson.toJson(newParams);
+                    request = request.newBuilder().post(FormBody.create(JSON,
+                            newJsonParams)).build();
                 }
-                newParams = (HashMap) getAllParam(newParams);
-                String newJsonParams = mGson.toJson(newParams);
-                request = request.newBuilder().post(RequestBody.create(JSON,
-                        newJsonParams)).build();
-                return chain.proceed(request);
-            } else {
-                return chain.proceed(request);
             }
+            return chain.proceed(request);
         }
     }
 

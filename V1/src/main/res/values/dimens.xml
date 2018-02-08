@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--menu尺寸-->
+    <dimen name="menu_width">120dp</dimen>
+    <dimen name="menu_tri_right_margin">8dp</dimen>
+    <dimen name="menu_tri_width">20dp</dimen>
+</resources>
