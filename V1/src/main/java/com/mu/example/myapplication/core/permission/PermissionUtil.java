@@ -73,8 +73,8 @@ public class PermissionUtil {
             HandlerUtil.getInstance().postTask(new Runnable() {
                 @Override
                 public void run() {
-                    PopListUtil.with(App.mCurrentActivity).setAdapter(new PermissionAdapter(App.mCurrentActivity))
-                            .updateData(mExplain).show();
+//                    PopListUtil.with(App.mCurrentActivity).setAdapter(new PermissionAdapter(App.mCurrentActivity))
+//                            .updateData(mExplain).show();
                 }
             });
 

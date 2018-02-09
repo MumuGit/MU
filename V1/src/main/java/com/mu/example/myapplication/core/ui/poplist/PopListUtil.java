@@ -62,8 +62,8 @@ public class PopListUtil {
     public PopListUtil location(View target, float reTargetX, float reTargetY, int reSelfX, int reSelfY) {
         float targetX = target.getX() + reTargetX;
         float targetY = target.getY() + reTargetY;
-        float selfX = mDialog.getWindow() + reTargetX;
-        float selfY = target.getY() + reTargetY;
+        float selfX = mDialog.getWindow().getAttributes().x + reSelfX;
+        float selfY = mDialog.getWindow().getAttributes().y + reSelfY;
 
         mX = (int) (reTargetX + targetX);
         mY = (int) (reTargetY + targetY);
