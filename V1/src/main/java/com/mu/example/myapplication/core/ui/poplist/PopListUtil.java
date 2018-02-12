@@ -29,24 +29,29 @@ public class PopListUtil {
     private int mHeight;
     private int mX;
     private int mY;
-
-    enum TYPE {
-
-    }
+    private static PopListUtil popListUtil;
+    private float mTargetX;
+    private float mTargetY;
+    private float mReSelfX;
+    private float mReSelfY;
 
     private PopListUtil() {
-
     }
 
+    public static void closePopList() {
+        if (popListUtil != null && popListUtil.mDialog.isShowing()) {
+            popListUtil.mDialog.dismiss();
+        }
+    }
 
     public static PopListUtil with(Activity context, int layout, int style) {
-        View view = context.getLayoutInflater().inflate(R.layout.view_pop_list, null);
-        PopListUtil popListUtil = new PopListUtil();
+        View view = context.getLayoutInflater().inflate(layout, null);
+        popListUtil = new PopListUtil();
         popListUtil.mContext = context;
-        popListUtil.mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler);
+        popListUtil.mRecyclerView = view.findViewById(R.id.recycler);
         popListUtil.mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         popListUtil.mRecyclerView.addItemDecoration(new MenuDecoration());
-        popListUtil.mBuilder = new AlertDialog.Builder(context, R.style.pop_list);
+        popListUtil.mBuilder = new AlertDialog.Builder(context, style);
         popListUtil.mBuilder.setView(view);
         popListUtil.mDialog = popListUtil.mBuilder.create();
         //加上此句xy坐标才起作用
@@ -60,13 +65,12 @@ public class PopListUtil {
     }
 
     public PopListUtil location(View target, float reTargetX, float reTargetY, int reSelfX, int reSelfY) {
-        float targetX = target.getX() + reTargetX;
-        float targetY = target.getY() + reTargetY;
-        float selfX = mDialog.getWindow().getAttributes().x + reSelfX;
-        float selfY = mDialog.getWindow().getAttributes().y + reSelfY;
-
-        mX = (int) (reTargetX + targetX);
-        mY = (int) (reTargetY + targetY);
+        mTargetX = target.getX() + reTargetX;
+        mTargetY = target.getY() + reTargetY;
+        mReSelfX = reSelfX;
+        mReSelfY = reSelfY;
+        mX= (int) (mTargetX-mReSelfX);
+        mY= (int) (mTargetY-mReSelfY);
         return this;
     }
 
@@ -98,6 +102,8 @@ public class PopListUtil {
 //            }
 //        } while (current.getParent() != null);
 //
+
+
 //        // Request a layout to be re-done
 //        current.requestLayout();
 //    }
@@ -124,10 +130,8 @@ public class PopListUtil {
             if (mHeight != 0) {
                 params.height = mHeight;
             }
+
             if (mX != 0) {
-                mX = mX - params.width + mContext.getResources().
-                        getDimensionPixelSize(R.dimen.menu_tri_right_margin) + mContext.getResources().
-                        getDimensionPixelSize(R.dimen.menu_tri_width) / 2;
                 params.x = mX;
             }
             if (mY != 0) {

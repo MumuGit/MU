@@ -5,13 +5,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mu.example.myapplication.R;
+import com.mu.example.myapplication.core.permission.PermissionData;
 import com.mu.example.myapplication.core.ui.BaseRecyclerAdapter;
 
 /**
  * Created by mu on 2018/2/8.
  */
 
-public class PermissionAdapter extends BaseRecyclerAdapter<String, PermissionHolder> {
+public class PermissionAdapter extends BaseRecyclerAdapter<PermissionData, PermissionHolder> {
     public PermissionAdapter(Context mContext) {
         super(mContext);
     }

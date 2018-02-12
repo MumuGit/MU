@@ -109,28 +109,29 @@ public class HttpUtil {
                 getSystemService(Context.TELEPHONY_SERVICE);
         String[] result = new String[2];
         final String[] id = {null};
-        PermissionUtil.permission(C.RequestCode.PUBLIC_PARAM).success(new PermissionUtil.IPermissionSuccess() {
-            @SuppressLint({"MissingPermission"})
-            @Override
-            public void onSuccess() {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    id[0] = telephonyManager.getImei();
-                } else {
-                    id[0] = telephonyManager.getDeviceId();
-                }
-                if (TextUtils.isEmpty(id[0])) {
-                    id[0] = "000000000000000";
-                }
-                C.App.WAIT_ID = false;
-            }
-        }).fail(new PermissionUtil.IPermissionFail() {
+        PermissionUtil.permission(C.Request.PUBLIC_PARAM).
+                success(new PermissionUtil.IPermissionSuccess() {
+                    @SuppressLint({"MissingPermission"})
+                    @Override
+                    public void onSuccess() {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            id[0] = telephonyManager.getImei();
+                        } else {
+                            id[0] = telephonyManager.getDeviceId();
+                        }
+                        if (TextUtils.isEmpty(id[0])) {
+                            id[0] = "000000000000000";
+                        }
+                        C.App.WAIT_ID = false;
+                    }
+                }).fail(new PermissionUtil.IPermissionFail() {
             @SuppressLint("MissingPermission")
             @Override
             public void onFail(String refusePermission) {
                 id[0] = "000000000000000";
                 C.App.WAIT_ID = false;
             }
-        }).explain("请交出权限").request();
+        }).explain("请交出权限").code(C.Request.REQUEST_CODE_PUBLIC_PARAM).request();
         while (C.App.WAIT_ID) {
 
         }

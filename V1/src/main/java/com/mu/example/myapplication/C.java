@@ -11,9 +11,11 @@ public final class C {
 
         volatile public static boolean WAIT_ID = true;
     }
-    public static final class RequestCode {
+
+    public static final class Request {
 
         public static String[] PUBLIC_PARAM = {Manifest.permission.READ_PHONE_STATE};
+        public static int REQUEST_CODE_PUBLIC_PARAM = 0;
 
     }
 
