@@ -30,7 +30,6 @@ public class PermissionData {
 
     public void setUnauthorizedPermission(String[] unauthorizedPermission) {
         this.unauthorizedPermission = unauthorizedPermission;
-        int a=0;
     }
 
     private String[] unauthorizedPermission;

@@ -6,6 +6,7 @@ package com.mu.example.myapplication.model;
 
 public class SMSContent {
     public int sms_id;
+    private ErrorMessage error;
 
     public int getSms_id() {
         return sms_id;

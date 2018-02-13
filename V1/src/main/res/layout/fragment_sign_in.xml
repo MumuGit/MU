@@ -11,6 +11,7 @@
         android:text="13853263826" />
 
     <EditText
+        android:id="@+id/captcha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="短信验证码" />

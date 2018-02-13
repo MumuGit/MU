@@ -13,24 +13,15 @@ public class SMSResponse {
         this.status = status;
     }
 
-    public ErrorMessage getError() {
-        return error;
-    }
-
-    public void setError(ErrorMessage error) {
-        this.error = error;
-    }
-
-    private ErrorMessage error;
     private String status;
 
-//    public SMSContent getContent() {
-//        return content;
-//    }
-//
-//    public void setContent(SMSContent content) {
-//        this.content = content;
-//    }
+    public SMSContent getContent() {
+        return content;
+    }
+
+    public void setContent(SMSContent content) {
+        this.content = content;
+    }
 
     private SMSContent content;
     public class ErrorMessage {

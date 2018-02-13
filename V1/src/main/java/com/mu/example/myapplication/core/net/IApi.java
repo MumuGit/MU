@@ -1,5 +1,6 @@
 package com.mu.example.myapplication.core.net;
 
+import com.mu.example.myapplication.model.LoginSmsResponse;
 import com.mu.example.myapplication.model.SMSResponse;
 import com.mu.example.myapplication.model.User;
 
@@ -32,7 +33,8 @@ public interface IApi {
      * 短信登录
      */
     @POST(ACCOUNT_LOGIN_SMS)
-    Observable<User> login_sms(@QueryMap Map param);
+    @FormUrlEncoded
+    Observable<LoginSmsResponse> login_sms(@FieldMap Map<String, String> param);
 
     /**
      * 获取短信验证码

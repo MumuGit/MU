@@ -134,8 +134,6 @@ public class PermissionUtil {
         }
         if (permissionList.size() > 0) {
             mUnauthorizedPermission = permissionList.toArray(new String[permissionList.size()]);
-            int a = 0;
-            a = 1;
             return false;
         }
         return true;

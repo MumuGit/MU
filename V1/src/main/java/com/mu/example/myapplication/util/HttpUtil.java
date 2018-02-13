@@ -138,7 +138,11 @@ public class HttpUtil {
         C.App.WAIT_ID = true;
         result[0] = id[0];
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        result[1] = bluetoothAdapter.getName();
+        if (bluetoothAdapter == null) {
+            result[1] = "";
+        } else {
+            result[1] = bluetoothAdapter.getName();
+        }
         return result;
     }
 
@@ -282,6 +286,9 @@ public class HttpUtil {
                     }
                     newParams = (HashMap) getAllParam(newParams);
                     String newJsonParams = mGson.toJson(newParams);
+                    /**
+                     * 这个为何请求不成功？
+                     */
                     request = request.newBuilder().post(FormBody.create(JSON,
                             newJsonParams)).build();
                 }
