@@ -17,6 +17,7 @@
       <module fileurl="file://$PROJECT_DIR$/NetRequest/NetRequest.iml" filepath="$PROJECT_DIR$/NetRequest/NetRequest.iml" />
       <module fileurl="file://$PROJECT_DIR$/Retrofit2/Retrofit2.iml" filepath="$PROJECT_DIR$/Retrofit2/Retrofit2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Rxjava/Rxjava.iml" filepath="$PROJECT_DIR$/Rxjava/Rxjava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ScreenAdapter/ScreenAdapter.iml" filepath="$PROJECT_DIR$/ScreenAdapter/ScreenAdapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/UnderLineText/UnderLineText.iml" filepath="$PROJECT_DIR$/UnderLineText/UnderLineText.iml" />
       <module fileurl="file://$PROJECT_DIR$/V1/V1.iml" filepath="$PROJECT_DIR$/V1/V1.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />

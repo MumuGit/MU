@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.mu.example.myapplication.R;
+import com.mu.example.myapplication.core.database.GreenDaoHelper;
+import com.mu.example.myapplication.greendao.UserDao;
 import com.mu.example.myapplication.model.LoginSmsResponse;
 import com.mu.example.myapplication.model.SMSResponse;
 import com.mu.example.myapplication.util.HttpUtil;
@@ -41,6 +43,7 @@ public class SignInFragment extends Fragment {
         return root;
     }
 
+
     private void initView(View view) {
         sms_code = view.findViewById(R.id.sms_code);
         sign_in = view.findViewById(R.id.sign_in);
@@ -65,14 +68,14 @@ public class SignInFragment extends Fragment {
 
                     @Override
                     public void onError(Throwable e) {
-                        int a=0;
-                        a=1;
+                        int a = 0;
+                        a = 1;
                     }
 
                     @Override
                     public void onComplete() {
-                        int a=0;
-                        a=1;
+                        int a = 0;
+                        a = 1;
                     }
                 });
             }
@@ -94,7 +97,11 @@ public class SignInFragment extends Fragment {
 
                             @Override
                             public void onNext(LoginSmsResponse value) {
-
+                                UserDao userDao = GreenDaoHelper.getDaoSession().getUserDao();
+                                //数据库的增删改查我们都将通过UserDao来进行，插入操作如下：
+                                userDao.insert(value.getContent());
+                                //new User(null,"david",23,"male")
+                                //id传null 即自增。==> 这里是Long类型而不是long
                             }
 
                             @Override
@@ -107,52 +114,7 @@ public class SignInFragment extends Fragment {
 
                             }
                         });
-//                HttpUtil.getApi().login_sms(new OkHttpManager.ResultCallback<String>() {
-//                    @Override
-//                    public void onError(Call call, Exception e) {
-//                        ToastUtil.toast("网络不通");
-//
-//                    }
-//
-//                    @Override
-//
-//                    public void onSuccess(String response) {
-//
-//
-//                        String content = JasonUtil.getContent(response);
-//                        int status = JasonUtil.getStatus(response);
-//                        if (status == 200) {
-//                            //3.保存返回结果到本地表user,
-//                            // time_expire_login（即登录状态失效时间；UNIX时间戳）为90天后
-//                            ACT1Content act1Content = JasonUtil.getGson().fromJson(content, ACT1Content.class);
-//                            DaoUtil.updateUserWithACT1(act1Content);
-//
-//                            SHHelper.editor.putLong(SHHelper.time_expire_login, System.currentTimeMillis()
-//                                    + SHHelper.time_expire_login_90);
-//                            SHHelper.editor.commit();
-//                            //5.如user.password不为空，转到个人中心页，否则转到密码设置页
-//                            String password = DaoUtil.getUser().getPassword();
-//                            if (TextUtils.isEmpty(password)) {
-//                                startActivity(new Intent(getActivity(), AccountPasswordSetActivity.class));
-//                            } else {
-//                                ActivityUtils.startNaviActivity(getActivity(), NaviActivity.MINE_FG);
-//                            }
-//
-//                        } else {
-//                            passwordErrorCount++;
-//                            if (passwordErrorCount >= MAX_COUNT_ALLOW_PASSWORD_MISTAKE) {
-//                                mVerifycodeLayout.setVisibility(View.VISIBLE);
-//                                EditTextFocusRequestUtil.requestFocus(mVerifycodeInput);
-//                            } else {
-//                                mVerifycodeLayout.setVisibility(View.GONE);
-//                            }
-//                            ErrorModel error = JasonUtil.getGson().fromJson(content, ErrorModel.class);
-//                            String message = error.getError().getMessage();
-//                            ToastUtil.toast(message);
-//
-//                        }
-//                    }
-//                }, getActivity(), paramMapSubmit);
+
             }
         });
     }
