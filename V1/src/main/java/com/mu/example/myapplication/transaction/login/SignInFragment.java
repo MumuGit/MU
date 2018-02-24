@@ -97,9 +97,9 @@ public class SignInFragment extends Fragment {
 
                             @Override
                             public void onNext(LoginSmsResponse value) {
-                                UserDao userDao = GreenDaoHelper.getDaoSession().getUserDao();
-                                //数据库的增删改查我们都将通过UserDao来进行，插入操作如下：
-                                userDao.insert(value.getContent());
+//                                UserDao userDao = GreenDaoHelper.getDaoSession().getUserDao();
+//                                //数据库的增删改查我们都将通过UserDao来进行，插入操作如下：
+//                                userDao.insert(value.getContent());
                                 //new User(null,"david",23,"male")
                                 //id传null 即自增。==> 这里是Long类型而不是long
                             }
@@ -111,7 +111,7 @@ public class SignInFragment extends Fragment {
 
                             @Override
                             public void onComplete() {
-
+                                GreenDaoHelper.queryUserData();
                             }
                         });
 

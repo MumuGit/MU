@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
+import com.mu.example.myapplication.core.database.GreenDaoHelper;
+
 /**
  * Created by mu on 2018/1/17.
  */
@@ -17,6 +19,7 @@ public class App extends Application implements Application.ActivityLifecycleCal
         super.onCreate();
         mApplication = this;
         registerActivityLifecycleCallbacks(this);
+        GreenDaoHelper.initDatabase();
     }
 
     public static Application getApplication() {

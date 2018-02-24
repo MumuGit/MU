@@ -74,7 +74,7 @@ public class PermissionUtil {
 
             requestPermssion();
         } else {
-            ToastUtil.ToastShort("没有要请求的权限");
+            ToastUtil.toastShort("没有要请求的权限");
         }
 
     }

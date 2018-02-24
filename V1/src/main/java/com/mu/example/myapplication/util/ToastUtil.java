@@ -9,7 +9,7 @@ import com.mu.example.myapplication.App;
  */
 
 public class ToastUtil {
-    public static void ToastShort(String msg) {
+    public static void toastShort(String msg) {
         Toast.makeText(App.getApplication(), msg, Toast.LENGTH_SHORT).show();
     }
 }
