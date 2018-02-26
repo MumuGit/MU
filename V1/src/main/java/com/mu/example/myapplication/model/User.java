@@ -15,6 +15,8 @@ public class User {
     private String user_id;
     private String password;
     private String nickname;
+
+
     /**
      * 姓
      *
@@ -78,6 +80,7 @@ public class User {
         this.operator_id = operator_id;
         this.status = status;
     }
+
     @Generated(hash = 586692638)
     public User() {
     }

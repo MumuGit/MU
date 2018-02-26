@@ -14,6 +14,7 @@ import com.mu.example.myapplication.core.database.GreenDaoHelper;
 import com.mu.example.myapplication.greendao.UserDao;
 import com.mu.example.myapplication.model.LoginSmsResponse;
 import com.mu.example.myapplication.model.SMSResponse;
+import com.mu.example.myapplication.model.User;
 import com.mu.example.myapplication.util.HttpUtil;
 
 import java.util.HashMap;
@@ -63,6 +64,7 @@ public class SignInFragment extends Fragment {
 
                     @Override
                     public void onNext(SMSResponse value) {
+
                         id = String.valueOf(value.getContent().getSms_id());
                     }
 
@@ -98,8 +100,12 @@ public class SignInFragment extends Fragment {
                             @Override
                             public void onNext(LoginSmsResponse value) {
 //                                UserDao userDao = GreenDaoHelper.getDaoSession().getUserDao();
-//                                //数据库的增删改查我们都将通过UserDao来进行，插入操作如下：
-//                                userDao.insert(value.getContent());
+////                                //数据库的增删改查我们都将通过UserDao来进行，插入操作如下：
+//                                User user = userDao.queryBuilder().where
+//                                        (UserDao.Properties.Id.eq(0)).unique();
+//                                user.setA("dd");
+//                                userDao.insertOrReplace(value.getContent());
+
                                 //new User(null,"david",23,"male")
                                 //id传null 即自增。==> 这里是Long类型而不是long
                             }
@@ -118,4 +124,6 @@ public class SignInFragment extends Fragment {
             }
         });
     }
+
+
 }
