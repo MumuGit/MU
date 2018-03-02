@@ -3,7 +3,6 @@ package com.mu.example.myapplication.transaction.login;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 
 import com.mu.example.myapplication.R;
 import com.mu.example.myapplication.core.ui.BaseActivity;

@@ -17,8 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoaderActivity" />
-        <activity android:name=".PreviewVideoActivity" />
+        <activity android:name=".action.feature.select_media.LoaderActivity" />
+        <activity android:name=".action.feature.videoplayer.PreviewVideoActivity" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.mu.example.myapplication;
+package com.mu.example.myapplication.action.feature.select_media.ui.view;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;
@@ -19,7 +19,7 @@ public class SquaredImageView extends AppCompatImageView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+
     }
 }

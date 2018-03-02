@@ -1,10 +1,10 @@
-package com.mu.example.myapplication;
+package com.mu.example.myapplication.model;
 
 /**
  * Created by mu on 2018/1/11.
  */
 
-public abstract class MediaEntity {
+public class MediaEntity {
     public static final String IMAGE = "image";
     protected String mimeType;
 

@@ -1,4 +1,4 @@
-package com.mu.example.myapplication;
+package com.mu.example.myapplication.action.feature.select_media.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mu.example.myapplication.R;
+import com.mu.example.myapplication.action.feature.select_media.ui.holder.MyViewHolder;
+import com.mu.example.myapplication.model.MediaEntity;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +19,7 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
-    interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onClick(int position, MediaEntity data);
     }
 
@@ -27,8 +32,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     OnItemClickListener itemClickListener;
 
-    public MyAdapter(List<MediaEntity> mData, Context context) {
-        this.mData = mData;
+    public MyAdapter(Context context) {
         this.context = context;
     }
 
@@ -57,7 +61,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     }
 
     public void updateData(List<MediaEntity> newData) {
+        if(mData==null){
+            mData=new ArrayList<>();
+        }
         mData.addAll(newData);
         notifyDataSetChanged();
     }
+
+
 }

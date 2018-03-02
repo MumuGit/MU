@@ -1,4 +1,4 @@
-package com.mu.example.myapplication.videoplayer.surfaceview;
+package com.mu.example.myapplication.action.feature.videoplayer.surfaceview;
 
 import android.annotation.TargetApi;
 import android.content.Context;

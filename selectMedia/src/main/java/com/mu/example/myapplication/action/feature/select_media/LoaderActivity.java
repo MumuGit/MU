@@ -1,4 +1,4 @@
-package com.mu.example.myapplication;
+package com.mu.example.myapplication.action.feature.select_media;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.mu.example.myapplication.R;
+import com.mu.example.myapplication.action.feature.select_media.presenter.LoaderPresenter;
+import com.mu.example.myapplication.action.feature.select_media.ui.adapter.MyAdapter;
+import com.mu.example.myapplication.action.feature.videoplayer.PreviewVideoActivity;
+import com.mu.example.myapplication.model.MediaEntity;
 
 import java.util.List;
 
@@ -18,7 +24,7 @@ public class LoaderActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     LoaderPresenter loaderPresenter;
     MyAdapter myAdapter;
-
+//    private int mPage;
     MyAdapter.OnItemClickListener adapterItemClick = new MyAdapter.OnItemClickListener() {
         @Override
         public void onClick(int position, MediaEntity data) {
@@ -52,21 +58,21 @@ public class LoaderActivity extends AppCompatActivity {
         });
 
         loaderPresenter = new LoaderPresenter(this, getSupportLoaderManager(), this);
-        loaderPresenter.loadData();
+        loaderPresenter.loadData(LoaderPresenter.LOAD_ALL);
     }
 
     public void loadMore() {
-        loaderPresenter.getData();
+        loaderPresenter.loadData(LoaderPresenter.LOAD_ALL);
     }
 
     public void updateData(List<MediaEntity> data) {
         if (myAdapter == null) {
-            myAdapter = new MyAdapter(data, this);
+            myAdapter = new MyAdapter(this);
             myAdapter.setItemClickListener(adapterItemClick);
             recyclerView.setAdapter(myAdapter);
-        } else {
-            myAdapter.updateData(data);
         }
+        myAdapter.updateData(data);
+
     }
 
 

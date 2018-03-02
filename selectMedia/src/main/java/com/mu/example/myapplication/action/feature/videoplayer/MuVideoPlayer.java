@@ -1,4 +1,4 @@
-package com.mu.example.myapplication.videoplayer;
+package com.mu.example.myapplication.action.feature.videoplayer;
 
 import android.content.Context;
 import android.graphics.Color;

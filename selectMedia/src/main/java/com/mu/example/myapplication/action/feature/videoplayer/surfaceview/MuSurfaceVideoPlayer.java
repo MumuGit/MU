@@ -1,4 +1,4 @@
-package com.mu.example.myapplication.videoplayer.surfaceview;
+package com.mu.example.myapplication.action.feature.videoplayer.surfaceview;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;

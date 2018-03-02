@@ -1,9 +1,13 @@
-package com.mu.example.myapplication;
+package com.mu.example.myapplication.action.feature.select_media.ui.holder;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.mu.example.myapplication.R;
+import com.mu.example.myapplication.model.MediaEntity;
+import com.mu.example.myapplication.util.ImageUtils;
 
 import java.io.File;
 
@@ -13,9 +17,11 @@ import java.io.File;
 
 public class MyViewHolder extends RecyclerView.ViewHolder {
     ImageView imageView;
+    Context context;
 
     public MyViewHolder(View itemView) {
         super(itemView);
+        context = itemView.getContext();
         imageView = itemView.findViewById(R.id.image);
     }
 

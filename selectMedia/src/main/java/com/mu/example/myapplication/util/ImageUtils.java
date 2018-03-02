@@ -1,4 +1,4 @@
-package com.mu.example.myapplication;
+package com.mu.example.myapplication.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,6 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.mu.example.myapplication.R;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;

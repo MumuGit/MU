@@ -1,11 +1,12 @@
-package com.mu.example.myapplication;
+package com.mu.example.myapplication.action.feature.videoplayer;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.mu.example.myapplication.videoplayer.MuVideoPlayer;
-import com.mu.example.myapplication.videoplayer.surfaceview.MuSurfaceVideoPlayer;
+import com.mu.example.myapplication.R;
+import com.mu.example.myapplication.model.MediaEntity;
+import com.mu.example.myapplication.action.feature.videoplayer.surfaceview.MuSurfaceVideoPlayer;
 
 /**
  * Created by mu on 2018/1/11.
