@@ -1,4 +1,4 @@
-package com.mu.example.myapplication.action.feature.select_media.presenter;
+package com.mu.example.myapplication.action.feature.media_picker.presenter;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -9,13 +9,13 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 
-import com.mu.example.myapplication.action.feature.select_media.LoaderActivity;
-import com.mu.example.myapplication.model.ImageEntity;
-import com.mu.example.myapplication.model.MediaEntity;
-import com.mu.example.myapplication.model.VideoEntity;
+import com.mu.example.myapplication.R;
+import com.mu.example.myapplication.action.feature.media_picker.LoaderActivity;
+import com.mu.example.myapplication.model.Folder;
+import com.mu.example.myapplication.model.Media;
+import com.mu.example.myapplication.util.FileUtil;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by mu on 2018/1/10.
@@ -33,9 +33,13 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
     public boolean mHasMore = true;
     public static final int LIMIT = 23;
     private int mPage;
+    private MediaLoaderListener loaderListener;
     private static final String[] ALL_PROJECTION = {
+            MediaStore.Files.FileColumns._ID,
+            MediaStore.Files.FileColumns.DISPLAY_NAME,
             MediaStore.Files.FileColumns.DATA,
             MediaStore.Files.FileColumns.SIZE,
+            MediaStore.Files.FileColumns.MEDIA_TYPE,
             MediaStore.Files.FileColumns.MIME_TYPE,
             MediaStore.Files.FileColumns.DATE_ADDED,
             MediaStore.Video.Media.DURATION
@@ -56,10 +60,10 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
     };
 
 
-    public LoaderPresenter(Context context, LoaderManager loaderManager, LoaderActivity activity) {
+    public LoaderPresenter(Context context, LoaderManager loaderManager, MediaLoaderListener loaderListener) {
         this.mContext = context;
         this.loaderManager = loaderManager;
-        mActivity = activity;
+        this.loaderListener = loaderListener;
     }
 
     public void loadData(int type) {
@@ -140,21 +144,14 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
         int id = loader.getId();
-        List files = null;
         if (id == LOAD_ALL) {
-            files = getAllFile(data);
+            getAllFile(data);
         } else if (id == LOAD_IMAGE) {
-            files = getImageFile(data);
+            //  files = getImageFile(data);
         } else if (id == LOAD_VIDEO) {
-            files = getVideoFile(data);
+            //  files = getVideoFile(data);
         }
 
-        if (files != null && files.size() >= LIMIT) {
-            mHasMore = true;
-        } else {
-            mHasMore = false;
-        }
-        mActivity.updateData(files);
     }
 
     @Override
@@ -162,61 +159,87 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
 
     }
 
-    public List getImageFile(Cursor cursor) {
-        List<ImageEntity> result = null;
+//    public List getImageFile(Cursor cursor) {
+//        List<Image> result = null;
+//
+//        if (cursor != null) {
+//            if (cursor.moveToFirst()) {
+//                result = new ArrayList<>();
+//                do {
+//                    Image entity = new Image();
+//                    entity.setLocalPath(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)));
+//                    entity.setMimeType(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE)));
+//                    entity.setSize(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)));
+//                    entity.setDateAdded(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED)));
+//                    result.add(entity);
+//                } while (cursor.moveToNext());
+//            }
+//        }
+//        return result;
+//    }
+//
+//    public List getVideoFile(Cursor cursor) {
+//        List<Video> result = null;
+//
+//        if (cursor != null) {
+//            if (cursor.moveToFirst()) {
+//                result = new ArrayList<>();
+//                do {
+//                    Video entity = new Video();
+//                    entity.setLocalPath(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)));
+//                    entity.setMimeType(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE)));
+//                    entity.setSize(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)));
+//                    entity.setDateAdded(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED)));
+//                    result.add(entity);
+//                } while (cursor.moveToNext());
+//            }
+//        }
+//        return result;
+//    }
 
+    public void getAllFile(Cursor cursor) {
+        ArrayList<Folder> folders = new ArrayList<>();
+        Folder allFile = new Folder(mContext.getResources().getString(R.string.all_file));
+        Folder allVideo = new Folder(mContext.getResources().getString(R.string.all_video));
+        Folder allImage = new Folder(mContext.getResources().getString(R.string.all_image));
+        folders.add(allFile);
+        folders.add(allVideo);
+        folders.add(allImage);
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                result = new ArrayList<>();
-                do {
-                    ImageEntity entity = new ImageEntity();
-                    entity.setLocalPath(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)));
-                    entity.setMimeType(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE)));
-                    entity.setSize(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)));
-                    entity.setDateAdded(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED)));
-                    result.add(entity);
-                } while (cursor.moveToNext());
-            }
-        }
-        return result;
-    }
-
-    public List getVideoFile(Cursor cursor) {
-        List<VideoEntity> result = null;
-
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                result = new ArrayList<>();
-                do {
-                    VideoEntity entity = new VideoEntity();
-                    entity.setLocalPath(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)));
-                    entity.setMimeType(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE)));
-                    entity.setSize(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)));
-                    entity.setDateAdded(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED)));
-                    result.add(entity);
-                } while (cursor.moveToNext());
-            }
-        }
-        return result;
-    }
-
-    public List getAllFile(Cursor cursor) {
-        List<MediaEntity> result = null;
-
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                result = new ArrayList<>();
-                do {
-                    MediaEntity entity = new MediaEntity();
-                    entity.setLocalPath(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)));
-                    entity.setMimeType(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MIME_TYPE)));
+                while (cursor.moveToNext()) {
+                    Media entity = new Media();
                     entity.setSize(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE)));
+                    if (entity.getSize() < 1) continue;
+                    entity.setId(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID)));
+                    entity.setDisplayName(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME)));
+                    entity.setLocalPath(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)));
+                    entity.setMediaType(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MEDIA_TYPE)));
+                    entity.setMimeType(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MIME_TYPE)));
                     entity.setDateAdded(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_ADDED)));
-                    result.add(entity);
-                } while (cursor.moveToNext());
+                    entity.setDuration(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION)));
+                    String dirName = FileUtil.getParent(entity.getLocalPath());
+                    entity.setParentPath(dirName);
+                    int index = FileUtil.hasDir(folders, dirName);
+                    if (index != -1) {
+                        folders.get(index).add(entity);
+                    } else {
+                        Folder folder = new Folder(dirName);
+                        folder.add(entity);
+                        folders.add(folder);
+                    }
+                    if (MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE == entity.getMediaType()) {
+                        allImage.add(entity);
+                    }
+                    if (MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO == entity.getMediaType()) {
+                        allVideo.add(entity);
+                    }
+                    allFile.add(entity);
+                }
+                cursor.close();
             }
         }
-        return result;
+        loaderListener.onLoadComplete(folders);
     }
 
 

@@ -1,4 +1,4 @@
-package com.mu.example.myapplication.action.feature.select_media.ui.view;
+package com.mu.example.myapplication.action.feature.media_picker.ui.view;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;

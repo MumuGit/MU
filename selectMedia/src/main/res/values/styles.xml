@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="NoTitleTheme" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="MediaFolder" parent="Base.V7.Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
 </resources>

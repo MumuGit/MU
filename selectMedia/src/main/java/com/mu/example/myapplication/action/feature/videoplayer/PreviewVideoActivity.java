@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.mu.example.myapplication.R;
-import com.mu.example.myapplication.model.MediaEntity;
+import com.mu.example.myapplication.model.Media;
 import com.mu.example.myapplication.action.feature.videoplayer.surfaceview.MuSurfaceVideoPlayer;
 
 /**
@@ -13,7 +13,7 @@ import com.mu.example.myapplication.action.feature.videoplayer.surfaceview.MuSur
  */
 
 public class PreviewVideoActivity extends AppCompatActivity {
-    MediaEntity mediaEntity;
+    Media mediaEntity;
     MuSurfaceVideoPlayer videoPlayer;
     private final String url1 = "http://svideo.spriteapp.com/video/2016/0703/7b5bc740-4134-11e6-ac2b-d4ae5296039d_wpd.mp4";
 
