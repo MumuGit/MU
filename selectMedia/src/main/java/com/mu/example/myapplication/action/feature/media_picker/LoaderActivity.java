@@ -29,7 +29,7 @@ import java.util.List;
  * Created by mu on 2018/1/10.
  */
 
-public class LoaderActivity extends AppCompatActivity implements MediaLoaderListener {
+public class LoaderActivity extends AppCompatActivity implements MediaLoaderListener, MediaAdapter.OnSelectCountChangeListener {
     RecyclerView recyclerView;
     LoaderPresenter loaderPresenter;
     MediaAdapter mediaAdapter;
@@ -39,6 +39,7 @@ public class LoaderActivity extends AppCompatActivity implements MediaLoaderList
     Button preview;
     RelativeLayout footer;
     private boolean showCamera = C.MediaPicker.DEAULT_SHOW_CAMERA;
+    private boolean isReplace = C.MediaPicker.DEAULT_REPLACE;
     private int maxSelectableCount = C.MediaPicker.DEAULT_SELECTABLE_MAX_COUNT;
     private String selectTag;
     //    private int mPage;
@@ -81,6 +82,7 @@ public class LoaderActivity extends AppCompatActivity implements MediaLoaderList
             showCamera = bundle.getBoolean(C.MediaPicker.SHOW_CAMERA);
             maxSelectableCount = bundle.getInt(C.MediaPicker.SELECTABLE_MAX_COUNT);
             selectTag = bundle.getString(C.MediaPicker.SELECT_TAG);
+            isReplace = bundle.getBoolean(C.MediaPicker.REPLACE);
         }
     }
 
@@ -118,6 +120,18 @@ public class LoaderActivity extends AppCompatActivity implements MediaLoaderList
         category_btn.setText(text);
     }
 
+    private void updateSelectedCount() {
+        int seleted = MediaDataCache.getInstance().getTempSelectedMediaCount();
+        int max = MediaDataCache.getInstance().getCurrentMaxSelectableCount();
+        if (seleted > 0) {
+            done.setText(getResources().getString(R.string.done) + "(" + seleted + "/" + max + ")");
+            preview.setText(getResources().getString(R.string.preview) + "(" + seleted + ")");
+        } else {
+            done.setText(getResources().getString(R.string.done));
+            preview.setText(getResources().getString(R.string.preview));
+        }
+    }
+
     @Override
     public void onBackPressed() {
         setResult(RESULT_CANCELED, null);
@@ -139,6 +153,7 @@ public class LoaderActivity extends AppCompatActivity implements MediaLoaderList
         recyclerView.setAdapter(mediaAdapter);
         mediaAdapter.updateData();
         updateCategoryBtn();
+        updateSelectedCount();
     }
 
     @Override
@@ -154,11 +169,18 @@ public class LoaderActivity extends AppCompatActivity implements MediaLoaderList
         mediaAdapter.setMaxSelectableCount(maxSelectableCount);
         mediaAdapter.setShowCamera(showCamera);
         mediaAdapter.setOnItemClickListener(adapterItemClick);
+        mediaAdapter.setOnSelectCountChangeListener(this);
+        mediaAdapter.setReplace(isReplace);
     }
 
     public void initFolderAdapter() {
         folderAdapter = new MediaFolderAdapter(this);
         folderAdapter.setLoaderListener(this);
         folderAdapter.updateData();
+    }
+
+    @Override
+    public void OnSelectCountChange() {
+        updateSelectedCount();
     }
 }

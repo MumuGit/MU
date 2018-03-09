@@ -15,7 +15,7 @@ import com.mu.example.myapplication.action.feature.media_picker.presenter.MediaP
 public class MainActivity extends AppCompatActivity {
     Button photo;
     Button vedio;
-    String[] permission = {Manifest.permission.READ_EXTERNAL_STORAGE};
+    String[] permission = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
 
     private void requestPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 MediaDataCache.getInstance().setCurrentSelectedTag("1");
                 MediaDataCache.getInstance().setCurrentMaxSelectableCount(9);
-                MediaDataCache.getInstance().setShowCamera(false);
+                MediaDataCache.getInstance().setShowCamera(true);
                 requestPermission();
             }
         });

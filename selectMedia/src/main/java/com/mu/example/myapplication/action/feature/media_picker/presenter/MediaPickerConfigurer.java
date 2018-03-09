@@ -15,6 +15,9 @@ import com.mu.example.myapplication.action.feature.media_picker.LoaderActivity;
 public class MediaPickerConfigurer {
     private static MediaPickerConfigurer sSelector;
     private boolean showCamera = C.MediaPicker.DEAULT_SHOW_CAMERA;
+
+
+    private boolean replace = C.MediaPicker.DEAULT_REPLACE;
     private int maxSelectableCount = C.MediaPicker.DEAULT_SELECTABLE_MAX_COUNT;
 
     public static MediaPickerConfigurer create() {
@@ -34,6 +37,11 @@ public class MediaPickerConfigurer {
         return sSelector;
     }
 
+    public MediaPickerConfigurer replace(boolean replace) {
+        this.replace = replace;
+        return sSelector;
+    }
+
 
     public void start(Activity activity, int requestCode, String tag) {
         activity.startActivityForResult(createIntent(activity, tag), requestCode);
@@ -48,6 +56,7 @@ public class MediaPickerConfigurer {
         Bundle bundle = new Bundle();
         bundle.putString(C.MediaPicker.SELECT_TAG, tag);
         bundle.putBoolean(C.MediaPicker.SHOW_CAMERA, showCamera);
+        bundle.putBoolean(C.MediaPicker.REPLACE, replace);
         bundle.putInt(C.MediaPicker.SELECTABLE_MAX_COUNT, maxSelectableCount);
         intent.putExtras(bundle);
         return intent;
@@ -58,6 +67,7 @@ public class MediaPickerConfigurer {
         Bundle bundle = new Bundle();
         bundle.putString(C.MediaPicker.SELECT_TAG, tag);
         bundle.putBoolean(C.MediaPicker.SHOW_CAMERA, showCamera);
+        bundle.putBoolean(C.MediaPicker.REPLACE, replace);
         bundle.putInt(C.MediaPicker.SELECTABLE_MAX_COUNT, maxSelectableCount);
         intent.putExtras(bundle);
         return intent;

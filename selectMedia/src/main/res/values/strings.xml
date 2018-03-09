@@ -5,5 +5,7 @@
     <string name="all_image">所有图片</string>
     <string name="done">完成</string>
     <string name="preview">预览</string>
+    <string name="exceed_tip">超出最大可选数目</string>
+    <string name="less_10s_tip">视频小于10s</string>
 
 </resources>

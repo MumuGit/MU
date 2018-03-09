@@ -1,5 +1,6 @@
 package com.mu.example.myapplication.action.feature.media_picker.presenter;
 
+import com.mu.example.myapplication.C;
 import com.mu.example.myapplication.model.Folder;
 import com.mu.example.myapplication.model.Media;
 import com.mu.example.myapplication.util.MapUtil;
@@ -7,7 +8,6 @@ import com.mu.example.myapplication.util.MapUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -101,18 +101,22 @@ public class MediaDataCache {
 //        return selectedMedia;
 //    }
 
-    public void addMedia(Media meida) {
+    /**
+     * @param meida
+     * @return 0表示成功，1表示超出max可选数量
+     */
+    public int addMedia(Media meida) {
         if (tempSelectedMedia == null) {
             tempSelectedMedia = new ArrayList<>();
             tempSelectedMedia.addAll(selectedMediaMap.get(currentSelectedTag));
         }
-        if (tempSelectedMedia == null) {
-            tempSelectedMedia = new LinkedList<>();
+        if (tempSelectedMedia.size() + 1 > currentMaxSelectableCount) {
+            return C.MediaPicker.EXCEED_MAX_COUNT;
         }
-
         if (!tempSelectedMedia.contains(meida)) {
             tempSelectedMedia.add(meida);
         }
+        return C.MediaPicker.SUCCESS_ADD;
     }
 
     public void replaceMedia(Media newMedia, Media oldMedia) {
@@ -127,6 +131,14 @@ public class MediaDataCache {
             }
         }
 
+    }
+
+    public int getTempSelectedMediaCount() {
+        if (tempSelectedMedia == null) {
+            tempSelectedMedia = new ArrayList<>();
+            tempSelectedMedia.addAll(selectedMediaMap.get(currentSelectedTag));
+        }
+        return tempSelectedMedia.size();
     }
 
     public void swopMedia(Media meida1, Media meida2) {
@@ -181,13 +193,6 @@ public class MediaDataCache {
 
     }
 
-//    public void setSelectedMedia(List<Media> selectedMedia) {
-//        selectedMediaMap.put(SELECT_MEDIA_DEFAULT_KEY, selectedMedia);
-//    }
-//
-//    public void setSelectedMedia(String key, List<Media> selectedMedia) {
-//        selectedMediaMap.put(key, selectedMedia);
-//    }
 
     public static MediaDataCache getInstance() {
         return Holder.INSTANCE;

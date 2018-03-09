@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -15,6 +16,7 @@ import com.mu.example.myapplication.model.Folder;
 import com.mu.example.myapplication.model.Media;
 import com.mu.example.myapplication.util.FileUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -39,10 +41,9 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
             MediaStore.Files.FileColumns.DISPLAY_NAME,
             MediaStore.Files.FileColumns.DATA,
             MediaStore.Files.FileColumns.SIZE,
-            MediaStore.Files.FileColumns.MEDIA_TYPE,
             MediaStore.Files.FileColumns.MIME_TYPE,
             MediaStore.Files.FileColumns.DATE_ADDED,
-            MediaStore.Video.Media.DURATION
+//            MediaStore.Video.Media.DURATION
     };
 
     private static final String[] IMAGE_PROJECTION = {
@@ -82,16 +83,23 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 
         Uri baseUri;
-        String selectImage = IMAGE_PROJECTION[1] + ">0 and " + IMAGE_PROJECTION[2] + "=? or "
+//        String selectImage = IMAGE_PROJECTION[1] + ">0 and " + IMAGE_PROJECTION[2] + "=? or "
+//                + IMAGE_PROJECTION[2] + "=?";
+        String selectImage = " " + IMAGE_PROJECTION[2] + "=? or "
                 + IMAGE_PROJECTION[2] + "=?";
         String selectVideo = VIDEO_PROJECTION[1] + ">0 and " + VIDEO_PROJECTION[2] + "=? or "
                 + VIDEO_PROJECTION[2] + "=?";
+//        String selectVideo = VIDEO_PROJECTION[1] + ">0 and " + VIDEO_PROJECTION[2] + "=? or "
+//                + VIDEO_PROJECTION[2] + "=?";
         String selectAll = "(" + MediaStore.Files.FileColumns.MEDIA_TYPE + "="
                 + MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
                 + " OR "
                 + MediaStore.Files.FileColumns.MEDIA_TYPE + "="
                 + MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO + ") and ((" + selectImage + ") or"
                 + "(" + selectVideo + "))";
+        String selectAll1 = "((" + selectImage + ") or"
+                + "(" + selectVideo + "))";
+
         if (id == LOAD_ALL) {
 //            baseUri = MediaStore.Files.getContentUri("external");
 //            String select = ALL_PROJECTION[1] + ">0 and " + ALL_PROJECTION[2] + "=? or "
@@ -107,8 +115,9 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
 //                a = 1;
 //            }
 
-            baseUri = MediaStore.Files.getContentUri("external");
-
+//            baseUri = MediaStore.Files.getContentUri("external");
+//            baseUri = Uri.fromFile(new File(Environment.DIRECTORY_PICTURES));
+            baseUri = Uri.parse("content://media/external/images/media");
             String[] selectArgs = {"image/jpeg", "image/png", "video/mp4"};
             String sort = MediaStore.Files.FileColumns.DATE_ADDED + " DESC ";
 //            String sort = MediaStore.Files.FileColumns.DATE_ADDED + " DESC LIMIT " + LIMIT + " OFFSET " + LIMIT * mPage;
@@ -117,8 +126,8 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
                     mContext,
                     baseUri,
                     ALL_PROJECTION,
-                    selectAll,
-                    selectArgs, // Selection args (none).
+                    null,
+                    null, // Selection args (none).
                     sort // Sort order.
             );
             return cursorLoader;
@@ -212,12 +221,26 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
                     entity.setSize(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE)));
                     if (entity.getSize() < 1) continue;
                     entity.setId(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID)));
+                    System.out.println("muqi" + entity.getId());
                     entity.setDisplayName(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME)));
                     entity.setLocalPath(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)));
-                    entity.setMediaType(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MEDIA_TYPE)));
+//                    entity.setMediaType(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MEDIA_TYPE)));
                     entity.setMimeType(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MIME_TYPE)));
+                    if (cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_ADDED)) == 0) {
+                        int a = 0;
+                        a = 1;
+                    }
+                    if (entity.getId() == 7651l) {
+                        int a = 0;
+                        a = 1;
+                    }
+
+                    if (entity.getDisplayName() != null && entity.getDisplayName().contains("mumu")) {
+                        int a = 0;
+                        a = 1;
+                    }
                     entity.setDateAdded(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_ADDED)));
-                    entity.setDuration(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION)));
+//                    entity.setDuration(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION)));
                     String dirName = FileUtil.getParent(entity.getLocalPath());
                     entity.setParentPath(dirName);
                     int index = FileUtil.hasDir(folders, dirName);
@@ -225,6 +248,10 @@ public class LoaderPresenter implements LoaderManager.LoaderCallbacks<Cursor> {
                         folders.get(index).add(entity);
                     } else {
                         Folder folder = new Folder(dirName);
+                        if (dirName.contains("com.mu")) {
+                            int a = 0;
+                            a = 1;
+                        }
                         folder.add(entity);
                         folders.add(folder);
                     }
