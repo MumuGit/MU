@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#73000000">
 
-    <com.mu.example.myapplication.action.feature.videoplayer.surfaceview.ProgressWheel
+    <com.mu.example.myapplication.action.feature.video_player.surfaceview.ProgressWheel
         android:id="@+id/mn_player_progressBar"
         android:layout_width="40dp"
         android:layout_height="40dp"

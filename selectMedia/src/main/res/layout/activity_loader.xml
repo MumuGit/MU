@@ -6,7 +6,7 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/actionbar_media_select" />
+        layout="@layout/top_bar_media_select" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
@@ -54,7 +54,7 @@
             android:layout_centerVertical="true"
             android:background="@null"
             android:drawablePadding="5dp"
-            android:drawableRight="@mipmap/text_indicator"
+            android:drawableRight="@mipmap/corner_mark"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:paddingLeft="14dp"

@@ -1,4 +1,4 @@
-package com.mu.example.myapplication.action.feature.videoplayer;
+package com.mu.example.myapplication.action.feature.video_player;
 
 import java.util.Map;
 
@@ -6,7 +6,7 @@ import java.util.Map;
  * Created by mu on 2018/1/15.
  */
 
-public interface IVideoPlayer {
+public interface IVideoView {
     /**
      * 设置视频Url，以及headers
      *
@@ -150,6 +150,7 @@ public interface IVideoPlayer {
      */
     boolean exitFullScreen();
 
+
     /**
      * 进入小窗口模式
      */
@@ -174,4 +175,7 @@ public interface IVideoPlayer {
      * 并且控制器的UI也应该恢复到最初始的状态.
      */
     void release();
+
+
+
 }

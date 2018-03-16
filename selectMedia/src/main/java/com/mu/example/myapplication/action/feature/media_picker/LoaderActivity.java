@@ -2,6 +2,7 @@ package com.mu.example.myapplication.action.feature.media_picker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,7 +17,7 @@ import com.mu.example.myapplication.action.feature.media_picker.presenter.Loader
 import com.mu.example.myapplication.action.feature.media_picker.presenter.MediaDataCache;
 import com.mu.example.myapplication.action.feature.media_picker.presenter.MediaLoaderListener;
 import com.mu.example.myapplication.action.feature.media_picker.ui.adapter.MediaAdapter;
-import com.mu.example.myapplication.action.feature.videoplayer.PreviewVideoActivity;
+import com.mu.example.myapplication.action.feature.preview_media.MediaPreviewActivity;
 import com.mu.example.myapplication.model.Folder;
 import com.mu.example.myapplication.model.Media;
 import com.mu.example.myapplication.util.ScreenUtil;
@@ -46,9 +47,10 @@ public class LoaderActivity extends AppCompatActivity implements MediaLoaderList
     MediaAdapter.OnItemClickListener adapterItemClick = new MediaAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(Media media) {
-            Intent intent = new Intent(LoaderActivity.this, PreviewVideoActivity.class);
+            Intent intent = new Intent(LoaderActivity.this, MediaPreviewActivity.class);
             Bundle bundle = new Bundle();
             bundle.putParcelable(C.MediaPicker.PREVIEW_MEDIA_DATA, media);
+//            bundle.putInt(C.MediaPicker.PREVIEW_MEDIA_TYPE, MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE);
             intent.putExtras(bundle);
             startActivity(intent);
         }

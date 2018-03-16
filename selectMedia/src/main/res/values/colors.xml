@@ -14,4 +14,6 @@
     <color name="colorPlayerTrans">#00000000</color>
     <!--黑色半透明-->
     <color name="blackTranslucent">#60000000</color>
+    <color name="black_top_bar">#21282C</color>
+    <color name="black_vertiacl_divide">#cc111111</color>
 </resources>

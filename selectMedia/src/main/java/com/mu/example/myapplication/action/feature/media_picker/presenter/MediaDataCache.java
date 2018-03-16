@@ -38,6 +38,10 @@ public class MediaDataCache {
     private MediaDataCache() {
     }
 
+    public Folder getCurrentFolder() {
+        return folders.get(selectedFolderIndex);
+    }
+
     private static class Holder {
         public final static MediaDataCache INSTANCE = new MediaDataCache();
     }
