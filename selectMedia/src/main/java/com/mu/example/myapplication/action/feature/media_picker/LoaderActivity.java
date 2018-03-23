@@ -2,7 +2,6 @@ package com.mu.example.myapplication.action.feature.media_picker;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -46,10 +45,10 @@ public class LoaderActivity extends AppCompatActivity implements MediaLoaderList
     //    private int mPage;
     MediaAdapter.OnItemClickListener adapterItemClick = new MediaAdapter.OnItemClickListener() {
         @Override
-        public void onItemClick(Media media) {
+        public void onItemClick(Media media, int dataPositon) {
             Intent intent = new Intent(LoaderActivity.this, MediaPreviewActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putParcelable(C.MediaPicker.PREVIEW_MEDIA_DATA, media);
+            bundle.putInt(C.MediaPicker.PREVIEW_MEDIA_DATA_INDEX, dataPositon);
 //            bundle.putInt(C.MediaPicker.PREVIEW_MEDIA_TYPE, MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE);
             intent.putExtras(bundle);
             startActivity(intent);

@@ -15,6 +15,7 @@ public class C {
         public static String SELECT_TAG = "SELECT_TAG";
         public static String REPLACE = "REPLACE";
         public static String PREVIEW_MEDIA_DATA = "PREVIEW_MEDIA_DATA";
+        public static String PREVIEW_MEDIA_DATA_INDEX = "PREVIEW_MEDIA_DATA_INDEX";
         public static String PREVIEW_MEDIA_TYPE = "PREVIEW_MEDIA_TYPE";
         public static boolean DEAULT_SHOW_CAMERA = true;
         public static boolean DEAULT_REPLACE = false;
@@ -24,6 +25,7 @@ public class C {
         public final static int SUCCESS_ADD = 0;
         public final static int MEDIA_PICKER_TYPE_CAMERA = 0;
         public final static int MEDIA_PICKER_TYPE_MEDIA = 1;
+        public final static String VIDEO_URL = "VIDEO_URL";
     }
 
     public static class ImageOpreator {

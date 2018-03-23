@@ -22,4 +22,14 @@ public class CustomedTextureView extends TextureView {
             requestLayout();
         }
     }
+
+    @Override
+    public void setRotation(float rotation) {
+        if (rotation != getRotation()) {
+            super.setRotation(rotation);
+            requestLayout();
+        }
+    }
+
+
 }

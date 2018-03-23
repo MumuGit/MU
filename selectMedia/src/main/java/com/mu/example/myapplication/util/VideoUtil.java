@@ -3,7 +3,8 @@ package com.mu.example.myapplication.util;
 import android.content.Context;
 
 import com.mu.example.myapplication.App;
-import com.mu.example.myapplication.action.feature.video_player.VideoView;
+import com.mu.example.myapplication.action.feature.video_player.VideoController;
+import com.mu.example.myapplication.action.feature.video_player.VideoPlayer;
 
 /**
  * Created by mu on 2018/3/12.
@@ -12,11 +13,16 @@ import com.mu.example.myapplication.action.feature.video_player.VideoView;
 public class VideoUtil {
     private static String VIDEO_SP_NAME = "VIDEO_SP";
 
-    public static void display(Context context, String url, VideoView view) {
+    public static void display(Context context, String url, VideoPlayer view) {
         try {
             if (NetUtil.isWebUrl(url)) {
 
             }
+            view.setUp(url, null);
+            VideoController controller = new VideoController(context);
+            view.setController(controller);
+            view.start();
+
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

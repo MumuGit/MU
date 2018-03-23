@@ -66,7 +66,7 @@ public class MediaAdapter extends RecyclerView.Adapter<PickHolder> {
         if (holder instanceof MediaHolder) {
             final MediaHolder mediaHolder = (MediaHolder) holder;
             if (showCamera) {
-                position++;
+                position--;
             }
             final int finalPosition = position;
             mediaHolder.setOnSelectChangeListener(new MediaHolder.OnSelectStateChangeListener() {
@@ -107,7 +107,7 @@ public class MediaAdapter extends RecyclerView.Adapter<PickHolder> {
                         Toast.makeText(context, "不能选择", Toast.LENGTH_SHORT).show();
                     } else {
                         if (onItemClickListener != null) {
-                            onItemClickListener.onItemClick(mData.get(finalPosition));
+                            onItemClickListener.onItemClick(mData.get(finalPosition),finalPosition);
                         }
                     }
                 }
@@ -128,12 +128,12 @@ public class MediaAdapter extends RecyclerView.Adapter<PickHolder> {
 
     @Override
     public int getItemCount() {
-
         return showCamera ? mData.size() + 1 : mData.size();
     }
 
     public void updateData() {
-        mData = MediaDataCache.getInstance().get().get(MediaDataCache.getInstance().getSelectedFolderIndex()).getMedias();
+        mData = MediaDataCache.getInstance().get().get(MediaDataCache.
+                getInstance().getSelectedFolderIndex()).getMedias();
         notifyDataSetChanged();
     }
 
@@ -142,7 +142,7 @@ public class MediaAdapter extends RecyclerView.Adapter<PickHolder> {
     }
 
     public interface OnItemClickListener {
-        void onItemClick(Media media);
+        void onItemClick(Media media, int dataPosition);
     }
 
     public interface OnSelectCountChangeListener {

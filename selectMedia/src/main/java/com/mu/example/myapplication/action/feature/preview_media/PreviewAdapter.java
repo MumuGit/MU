@@ -7,10 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.mu.example.myapplication.action.feature.image_player.PhotoView;
-import com.mu.example.myapplication.action.feature.video_player.VideoView;
 import com.mu.example.myapplication.model.Media;
 import com.mu.example.myapplication.util.ImageUtils;
-import com.mu.example.myapplication.util.VideoUtil;
 
 import java.io.File;
 import java.util.List;
@@ -29,7 +27,6 @@ public class PreviewAdapter extends PagerAdapter {
     @Override
     public int getCount() {
         if (mData == null) {
-
             return 0;
         }
         return mData.size();
@@ -52,7 +49,9 @@ public class PreviewAdapter extends PagerAdapter {
         if (MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO == media.getMediaType()) {
             //TOdo
             view = new VideoView(container.getContext());
-            VideoUtil.display(container.getContext(), mData.get(position).getLocalPath(), (VideoView) view);
+            ((VideoView) view).setUrl(mData.get(position).getLocalPath());
+            ImageUtils.displayImageFromFile(container.getContext(),
+                    new File(mData.get(position).getLocalPath()), ((VideoView) view).getContent());
         }
         container.addView(view);
         return view;

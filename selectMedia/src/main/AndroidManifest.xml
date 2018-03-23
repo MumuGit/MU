@@ -23,10 +23,11 @@
         <activity
             android:name=".action.feature.media_picker.LoaderActivity"
             android:theme="@style/NoTitleTheme" />
-        <activity android:name=".action.feature.video_player.PreviewVideoActivity" />
         <activity
             android:name=".action.feature.preview_media.MediaPreviewActivity"
             android:theme="@style/NoTitleTheme" />
+        <activity android:name=".action.feature.video_player.VideoPlayerActivity"
+            android:theme="@style/NoTitleTheme"/>
     </application>
 
 </manifest>

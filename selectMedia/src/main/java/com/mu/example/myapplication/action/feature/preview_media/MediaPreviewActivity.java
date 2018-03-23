@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.mu.example.myapplication.C;
 import com.mu.example.myapplication.R;
 import com.mu.example.myapplication.action.feature.media_picker.presenter.MediaDataCache;
-import com.mu.example.myapplication.model.Media;
 
 /**
  * Created by mu on 2018/3/12.
@@ -20,7 +19,7 @@ public class MediaPreviewActivity extends AppCompatActivity {
     private ViewPager mDisplay;
     private TextView mBarTitle;
     private int mType = -1;
-    private Media mData;
+    private int mDataIndex;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,10 +44,11 @@ public class MediaPreviewActivity extends AppCompatActivity {
         if (intent != null && intent.getExtras() != null) {
             Bundle bundle = intent.getExtras();
 //            mType = bundle.getInt(C.MediaPicker.PREVIEW_MEDIA_TYPE, -1);
-            mData = bundle.getParcelable(C.MediaPicker.PREVIEW_MEDIA_DATA);
+            mDataIndex = bundle.getInt(C.MediaPicker.PREVIEW_MEDIA_DATA_INDEX);
         }
         mDisplay.setAdapter(new PreviewAdapter(MediaDataCache.getInstance()
                 .getCurrentFolder().getMedias()));
+        mDisplay.setCurrentItem(mDataIndex);
     }
 
 }
