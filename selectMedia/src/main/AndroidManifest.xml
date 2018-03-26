@@ -27,6 +27,7 @@
             android:name=".action.feature.preview_media.MediaPreviewActivity"
             android:theme="@style/NoTitleTheme" />
         <activity android:name=".action.feature.video_player.VideoPlayerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/NoTitleTheme"/>
     </application>
 

@@ -28,7 +28,7 @@ import java.util.TimerTask;
  */
 
 public class VideoController extends FrameLayout implements View.OnClickListener,
-        SeekBar.OnSeekBarChangeListener {
+        SeekBar.OnSeekBarChangeListener, View.OnTouchListener {
     private Context mContext;
     protected IVideoPlayer mVideoView;
     private Timer mUpdateProgressTimer;
@@ -129,6 +129,7 @@ public class VideoController extends FrameLayout implements View.OnClickListener
         mShare.setOnClickListener(this);
         mSeek.setOnSeekBarChangeListener(this);
         setOnClickListener(this);
+        setOnTouchListener(this);
 
     }
 
@@ -139,7 +140,6 @@ public class VideoController extends FrameLayout implements View.OnClickListener
      */
     public void setTitle(String title) {
         mTitle.setText(title);
-
     }
 
     /**
@@ -301,13 +301,13 @@ public class VideoController extends FrameLayout implements View.OnClickListener
     protected void onPlayModeChanged(int playMode) {
         switch (playMode) {
             case VideoPlayer.MODE_NORMAL:
-                mBack.setVisibility(View.GONE);
+//                mBack.setVisibility(View.GONE);
                 mFullScreen.setImageResource(R.mipmap.video_enlarge);
-                mFullScreen.setVisibility(View.VISIBLE);
+//                mFullScreen.setVisibility(View.VISIBLE);
                 break;
             case VideoPlayer.MODE_FULL_SCREEN:
-                mBack.setVisibility(View.VISIBLE);
-                mFullScreen.setVisibility(View.GONE);
+//                mBack.setVisibility(View.VISIBLE);
+                mFullScreen.setVisibility(View.VISIBLE);
                 mFullScreen.setImageResource(R.mipmap.video_shrink);
                 break;
             case VideoPlayer.MODE_TINY_WINDOW:
@@ -440,9 +440,10 @@ public class VideoController extends FrameLayout implements View.OnClickListener
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouch(View v, MotionEvent event) {
         // 只有全屏的时候才能拖动位置、亮度、声音
         if (!mVideoView.isFullScreen()) {
+
             return false;
         }
         // 只有在播放、暂停、缓冲的时候能够拖动改变位置、亮度和声音
@@ -599,4 +600,6 @@ public class VideoController extends FrameLayout implements View.OnClickListener
         mVideoView.seekTo(position);
         startDismissTopBottomTimer();
     }
+
+
 }

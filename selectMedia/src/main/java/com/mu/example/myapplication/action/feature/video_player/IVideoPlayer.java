@@ -123,20 +123,7 @@ public interface IVideoPlayer {
      */
     int getBufferPercentage();
 
-    /**
-     * 获取播放速度
-     *
-     * @param speed 播放速度
-     * @return 播放速度
-     */
-    float getSpeed(float speed);
 
-    /**
-     * 获取网络加载速度
-     *
-     * @return 网络加载速度
-     */
-    long getTcpSpeed();
 
     /**
      * 进入全屏模式

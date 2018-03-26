@@ -1,6 +1,7 @@
 package com.mu.example.myapplication.action.feature.video_player;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.mu.example.myapplication.action.feature.video_player.surfaceview.CustomedTextureView;
+import com.mu.example.myapplication.util.AppManagerUtil;
 import com.mu.example.myapplication.util.VideoUtil;
 
 import java.io.IOException;
@@ -135,7 +137,7 @@ public class VideoPlayer extends FrameLayout implements
     public void start() {
         if (mCurrentState == STATE_IDLE) {
             VideoManager.instance().setCurrentVideoView(this);
-            //initAudioManager();
+            initAudioManager();
             initMediaPlayer();
             initTextureView();
             addTextureView();
@@ -344,6 +346,7 @@ public class VideoPlayer extends FrameLayout implements
             mController.onPlayStateChanged(mCurrentState);
         }
     }
+
     @Override
     public boolean isBufferingPlaying() {
         return mCurrentState == STATE_BUFFERING_PLAYING;
@@ -363,19 +366,24 @@ public class VideoPlayer extends FrameLayout implements
     public boolean isPaused() {
         return mCurrentState == STATE_PAUSED;
     }
+
     @Override
     public void seekTo(long pos) {
-
+        if (mMediaPlayer != null) {
+            mMediaPlayer.seekTo((int) pos);
+        }
     }
 
     @Override
     public void setVolume(int volume) {
-
+        if (mAudioManager != null) {
+            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, 0);
+        }
     }
 
     @Override
     public void continueFromLastPosition(boolean continueFromLastPosition) {
-
+        this.continueFromLastPosition = continueFromLastPosition;
     }
 
     @Override
@@ -385,83 +393,120 @@ public class VideoPlayer extends FrameLayout implements
 
     @Override
     public boolean isPreparing() {
-        return false;
+        return mCurrentState == STATE_PREPARING;
     }
 
     @Override
     public boolean isPrepared() {
-        return false;
+        return mCurrentState == STATE_PREPARED;
     }
-
 
 
     @Override
     public boolean isError() {
-        return false;
+        return mCurrentState == STATE_ERROR;
     }
 
     @Override
     public boolean isCompleted() {
-        return false;
+        return mCurrentState == STATE_COMPLETED;
     }
 
     @Override
     public boolean isFullScreen() {
-        return false;
+        return mCurrentMode == MODE_FULL_SCREEN;
     }
 
     @Override
     public boolean isTinyWindow() {
-        return false;
+        return mCurrentMode == MODE_TINY_WINDOW;
     }
 
     @Override
     public boolean isNormal() {
-        return false;
+        return mCurrentMode == MODE_NORMAL;
     }
 
     @Override
     public int getMaxVolume() {
+        if (mAudioManager != null) {
+            return mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        }
         return 0;
     }
 
     @Override
     public int getVolume() {
+        if (mAudioManager != null) {
+            return mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        }
         return 0;
     }
 
     @Override
     public long getDuration() {
-        return 0;
+        return mMediaPlayer != null ? mMediaPlayer.getDuration() : 0;
     }
 
     @Override
     public long getCurrentPosition() {
-        return 0;
+        return mMediaPlayer != null ? mMediaPlayer.getCurrentPosition() : 0;
     }
 
     @Override
     public int getBufferPercentage() {
-        return 0;
+        return mBufferPercentage;
     }
 
-    @Override
-    public float getSpeed(float speed) {
-        return 0;
-    }
-
-    @Override
-    public long getTcpSpeed() {
-        return 0;
-    }
-
+    /**
+     * 全屏，将mContainer(内部包含mTextureView和mController)从当前容器中移除，并添加到android.R.content中.
+     * 切换横屏时需要在manifest的activity标签下添加android:configChanges="orientation|keyboardHidden|screenSize"配置，
+     * 以避免Activity重新走生命周期
+     */
     @Override
     public void enterFullScreen() {
+        if (mCurrentMode == MODE_FULL_SCREEN) return;
 
+        // 隐藏ActionBar、状态栏，并横屏
+        AppManagerUtil.hideActionBar(mContext);
+        AppManagerUtil.scanForActivity(mContext)
+                .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        ViewGroup contentView = (ViewGroup) AppManagerUtil.scanForActivity(mContext)
+                .findViewById(android.R.id.content);
+        if (mCurrentMode == MODE_TINY_WINDOW) {
+            contentView.removeView(mContainer);
+        } else {
+            this.removeView(mContainer);
+        }
+        LayoutParams params = new LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+        contentView.addView(mContainer, params);
+
+        mCurrentMode = MODE_FULL_SCREEN;
+        mController.onPlayModeChanged(mCurrentMode);
     }
 
     @Override
     public boolean exitFullScreen() {
+        if (mCurrentMode == MODE_FULL_SCREEN) {
+            AppManagerUtil.showActionBar(mContext);
+            AppManagerUtil.scanForActivity(mContext)
+                    .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+            ViewGroup contentView = (ViewGroup) AppManagerUtil.scanForActivity(mContext)
+                    .findViewById(android.R.id.content);
+            contentView.removeView(mContainer);
+            LayoutParams params = new LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
+            this.addView(mContainer, params);
+
+            mCurrentMode = MODE_NORMAL;
+            mController.onPlayModeChanged(mCurrentMode);
+            return true;
+        }
         return false;
     }
 
@@ -477,12 +522,51 @@ public class VideoPlayer extends FrameLayout implements
 
     @Override
     public void releasePlayer() {
-
+        if (mAudioManager != null) {
+            mAudioManager.abandonAudioFocus(null);
+            mAudioManager = null;
+        }
+        if (mMediaPlayer != null) {
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
+        mContainer.removeView(mTextureView);
+        if (mSurface != null) {
+            mSurface.release();
+            mSurface = null;
+        }
+        if (mSurfaceTexture != null) {
+            mSurfaceTexture.release();
+            mSurfaceTexture = null;
+        }
+        mCurrentState = STATE_IDLE;
     }
 
     @Override
     public void release() {
+        // 保存播放位置
+        if (isPlaying() || isBufferingPlaying() || isBufferingPaused() || isPaused()) {
+            VideoUtil.savePlayPosition(mUrl, getCurrentPosition());
+        } else if (isCompleted()) {
+            VideoUtil.savePlayPosition(mUrl, 0);
+        }
+        // 退出全屏或小窗口
+        if (isFullScreen()) {
+            exitFullScreen();
+        }
+        if (isTinyWindow()) {
+            exitTinyWindow();
+        }
+        mCurrentMode = MODE_NORMAL;
 
+        // 释放播放器
+        releasePlayer();
+
+        // 恢复控制器
+        if (mController != null) {
+            mController.reset();
+        }
+        Runtime.getRuntime().gc();
     }
 
 
