@@ -1,10 +1,13 @@
 package com.mu.example.myapplication.util;
 
 import android.content.Context;
+import android.media.MediaMetadataRetriever;
 
 import com.mu.example.myapplication.App;
 import com.mu.example.myapplication.action.feature.video_player.VideoController;
 import com.mu.example.myapplication.action.feature.video_player.VideoPlayer;
+
+import java.util.HashMap;
 
 /**
  * Created by mu on 2018/3/12.
@@ -42,5 +45,19 @@ public class VideoUtil {
 
     public static long getSavedPlayPosition(String url) {
         return App.getApplication().getSharedPreferences(VIDEO_SP_NAME, Context.MODE_PRIVATE).getLong(url, 0);
+    }
+
+    public static MediaMetadataRetriever getMediaMetadataRetriever(String path) {
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        try {
+            if (NetUtil.isWebUrl(path)) {
+                mmr.setDataSource(path, new HashMap<String, String>());
+            } else {
+                mmr.setDataSource(path);
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return mmr;
     }
 }

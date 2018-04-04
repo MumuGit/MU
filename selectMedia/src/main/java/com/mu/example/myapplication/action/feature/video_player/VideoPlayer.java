@@ -2,9 +2,11 @@ package com.mu.example.myapplication.action.feature.video_player;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -46,7 +48,8 @@ public class VideoPlayer extends FrameLayout implements
     private int mBufferPercentage;
     private boolean continueFromLastPosition = true;
     private long skipToPosition;
-
+    private Bitmap mCover;
+    private String mRotation;
     /**
      * 播放错误
      **/
@@ -115,6 +118,9 @@ public class VideoPlayer extends FrameLayout implements
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         this.addView(mContainer, params);
+        MediaMetadataRetriever retriever = VideoUtil.getMediaMetadataRetriever(mUrl);
+        mCover = retriever.getFrameAtTime();
+        mRotation = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION);
     }
 
     public void setUp(String url, Map<String, String> headers) {
@@ -469,6 +475,9 @@ public class VideoPlayer extends FrameLayout implements
 
         // 隐藏ActionBar、状态栏，并横屏
         AppManagerUtil.hideActionBar(mContext);
+        if(mRotation==MediaMetadataRetriever){
+
+        }
         AppManagerUtil.scanForActivity(mContext)
                 .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
@@ -492,6 +501,7 @@ public class VideoPlayer extends FrameLayout implements
     public boolean exitFullScreen() {
         if (mCurrentMode == MODE_FULL_SCREEN) {
             AppManagerUtil.showActionBar(mContext);
+
             AppManagerUtil.scanForActivity(mContext)
                     .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 

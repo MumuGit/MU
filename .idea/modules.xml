@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/A8NewFeature/A8NewFeature.iml" filepath="$PROJECT_DIR$/A8NewFeature/A8NewFeature.iml" />
       <module fileurl="file://$PROJECT_DIR$/AddressBook/AddressBook.iml" filepath="$PROJECT_DIR$/AddressBook/AddressBook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ApplyBaseRecyclerAdapter/ApplyBaseRecyclerAdapter.iml" filepath="$PROJECT_DIR$/ApplyBaseRecyclerAdapter/ApplyBaseRecyclerAdapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/AscdescButton/AscdescButton.iml" filepath="$PROJECT_DIR$/AscdescButton/AscdescButton.iml" />
       <module fileurl="file://$PROJECT_DIR$/CacheFile/CacheFile.iml" filepath="$PROJECT_DIR$/CacheFile/CacheFile.iml" />
       <module fileurl="file://$PROJECT_DIR$/ChildThread/ChildThread.iml" filepath="$PROJECT_DIR$/ChildThread/ChildThread.iml" />
