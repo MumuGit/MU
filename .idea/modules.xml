@@ -23,6 +23,8 @@
       <module fileurl="file://$PROJECT_DIR$/UnderLineText/UnderLineText.iml" filepath="$PROJECT_DIR$/UnderLineText/UnderLineText.iml" />
       <module fileurl="file://$PROJECT_DIR$/V1/V1.iml" filepath="$PROJECT_DIR$/V1/V1.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base_recycler/base_recycler.iml" filepath="$PROJECT_DIR$/base_recycler/base_recycler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base_recycler_adapter/base_recycler_adapter.iml" filepath="$PROJECT_DIR$/base_recycler_adapter/base_recycler_adapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/cardslide/cardslide.iml" filepath="$PROJECT_DIR$/cardslide/cardslide.iml" />
       <module fileurl="file://$PROJECT_DIR$/charts/charts.iml" filepath="$PROJECT_DIR$/charts/charts.iml" />
       <module fileurl="file://$PROJECT_DIR$/effective/effective.iml" filepath="$PROJECT_DIR$/effective/effective.iml" />
