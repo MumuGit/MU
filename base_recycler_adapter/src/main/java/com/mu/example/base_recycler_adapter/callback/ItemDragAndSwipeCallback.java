@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
+import com.mu.example.base_recycler_adapter.BaseItemDraggableAdapter;
+import com.mu.example.base_recycler_adapter.BaseQuickAdapter;
 import com.mu.example.base_recycler_adapter.R;
 
 public class ItemDragAndSwipeCallback extends ItemTouchHelper.Callback {
@@ -79,8 +81,9 @@ public class ItemDragAndSwipeCallback extends ItemTouchHelper.Callback {
     }
 
     @Override
-    public void onMoved(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, int fromPos, RecyclerView.ViewHolder target, int toPos, int x, int y) {
-        super.onMoved(recyclerView, viewHolder, fromPos, target, toPos, x, y);
+    public void onMoved(RecyclerView recyclerView, RecyclerView.ViewHolder source,
+                        int fromPos, RecyclerView.ViewHolder target, int toPos, int x, int y) {
+        super.onMoved(recyclerView, source, fromPos, target, toPos, x, y);
         mAdapter.onItemDragMoving(source, target);
     }
 
