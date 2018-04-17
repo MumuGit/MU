@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/px160dp"
+    android:layout_marginBottom="@dimen/px10dp"
+    android:layout_marginRight="@dimen/px20dp"
+    android:background="#f6f6f6"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/px20dp">
+
+    <CheckBox
+        android:id="@+id/check_select"
+        android:layout_width="@dimen/px64dp"
+        android:layout_height="@dimen/px64dp"
+        android:layout_centerVertical="true"
+        android:button="@drawable/selector_checkbox_default"
+        android:padding="@dimen/px20dp" />
+</RelativeLayout>

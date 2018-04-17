@@ -1605,7 +1605,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
         }
         if (!hasSubItems(expandable)) {
             expandable.setExpanded(true);
-            notifyItemChanged(position);
+            notifyItemChanged(position);//?
             return 0;
         }
         int subItemCount = 0;
@@ -1613,9 +1613,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
             List list = expandable.getSubItems();
             mData.addAll(position + 1, list);
             subItemCount += recursiveExpand(position + 1, list);
-
             expandable.setExpanded(true);
-//            subItemCount += list.size();
         }
         int parentPos = position + getHeaderLayoutCount();
         if (shouldNotify) {

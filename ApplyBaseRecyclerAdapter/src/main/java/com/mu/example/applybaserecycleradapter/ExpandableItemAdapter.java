@@ -67,7 +67,7 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
 //                            if (pos % 3 == 0) {
 //                                expandAll(pos, false);
 //                            } else {
-                            expand(pos);
+                            expand(pos,false);
 //                            }
                         }
                     }

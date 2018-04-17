@@ -28,11 +28,11 @@
             <option value="$PROJECT_DIR$/UnderLineText" />
             <option value="$PROJECT_DIR$/V1" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/base_recycler" />
             <option value="$PROJECT_DIR$/base_recycler_adapter" />
             <option value="$PROJECT_DIR$/cardslide" />
             <option value="$PROJECT_DIR$/charts" />
             <option value="$PROJECT_DIR$/effective" />
+            <option value="$PROJECT_DIR$/fine_recycler_adapter" />
             <option value="$PROJECT_DIR$/gaode" />
             <option value="$PROJECT_DIR$/myglide" />
             <option value="$PROJECT_DIR$/okhttp" />

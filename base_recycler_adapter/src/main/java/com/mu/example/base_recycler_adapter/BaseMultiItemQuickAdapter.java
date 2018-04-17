@@ -75,10 +75,10 @@ public abstract class BaseMultiItemQuickAdapter<T extends MultiItemEntity,
      */
     protected void removeAllChild(IExpandable parent, int parentPosition) {
         if (parent.isExpanded()) {
-            List<MultiItemEntity> chidChilds = parent.getSubItems();
-            if (chidChilds == null || chidChilds.size() == 0) return;
+            List<MultiItemEntity> childes = parent.getSubItems();
+            if (childes == null || childes.size() == 0) return;
 
-            int childSize = chidChilds.size();
+            int childSize = childes.size();
             for (int i = 0; i < childSize; i++) {
                 remove(parentPosition + 1);
             }
