@@ -475,9 +475,9 @@ public class VideoPlayer extends FrameLayout implements
 
         // 隐藏ActionBar、状态栏，并横屏
         AppManagerUtil.hideActionBar(mContext);
-        if(mRotation==MediaMetadataRetriever){
-
-        }
+//        if(mRotation==MediaMetadataRetriever.){
+//
+//        }
         AppManagerUtil.scanForActivity(mContext)
                 .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 

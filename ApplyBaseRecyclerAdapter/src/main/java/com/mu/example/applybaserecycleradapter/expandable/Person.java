@@ -1,6 +1,7 @@
-package com.mu.example.applybaserecycleradapter;
+package com.mu.example.applybaserecycleradapter.expandable;
 
 
+import com.mu.example.applybaserecycleradapter.expandable.ExpandableItemAdapter;
 import com.mu.example.base_recycler_adapter.entity.MultiItemEntity;
 
 /**

@@ -1,4 +1,4 @@
-package com.mu.example.applybaserecycleradapter;
+package com.mu.example.applybaserecycleradapter.expandable;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 
+import com.mu.example.applybaserecycleradapter.R;
 import com.mu.example.base_recycler_adapter.entity.MultiItemEntity;
 
 import java.util.ArrayList;

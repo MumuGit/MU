@@ -1,8 +1,9 @@
-package com.mu.example.applybaserecycleradapter;
+package com.mu.example.applybaserecycleradapter.expandable;
 
 import android.util.Log;
 import android.view.View;
 
+import com.mu.example.applybaserecycleradapter.R;
 import com.mu.example.base_recycler_adapter.BaseMultiItemQuickAdapter;
 import com.mu.example.base_recycler_adapter.BaseViewHolder;
 import com.mu.example.base_recycler_adapter.entity.MultiItemEntity;
