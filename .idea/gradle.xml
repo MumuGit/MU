@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/A8NewFeature" />
             <option value="$PROJECT_DIR$/AddressBook" />
             <option value="$PROJECT_DIR$/ApplyBaseRecyclerAdapter" />
+            <option value="$PROJECT_DIR$/ApplyFineGestureDector" />
             <option value="$PROJECT_DIR$/AscdescButton" />
             <option value="$PROJECT_DIR$/CacheFile" />
             <option value="$PROJECT_DIR$/ChildThread" />
@@ -32,8 +33,10 @@
             <option value="$PROJECT_DIR$/cardslide" />
             <option value="$PROJECT_DIR$/charts" />
             <option value="$PROJECT_DIR$/effective" />
+            <option value="$PROJECT_DIR$/fine_gesture_dector" />
             <option value="$PROJECT_DIR$/fine_recycler_adapter" />
             <option value="$PROJECT_DIR$/gaode" />
+            <option value="$PROJECT_DIR$/material-spinner-1.0.5" />
             <option value="$PROJECT_DIR$/myglide" />
             <option value="$PROJECT_DIR$/okhttp" />
             <option value="$PROJECT_DIR$/refresh" />

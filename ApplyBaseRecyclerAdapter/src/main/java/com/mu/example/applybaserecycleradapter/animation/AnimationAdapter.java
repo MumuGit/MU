@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.mu.example.applybaserecycleradapter.R;
 import com.mu.example.applybaserecycleradapter.data.DataServer;
 import com.mu.example.applybaserecycleradapter.data.Status;
+import com.mu.example.applybaserecycleradapter.util.ClickableMovementMethod;
+import com.mu.example.applybaserecycleradapter.util.SpannableStringUtils;
 import com.mu.example.applybaserecycleradapter.util.ToastUtils;
 import com.mu.example.applybaserecycleradapter.util.Utils;
 import com.mu.example.base_recycler_adapter.BaseQuickAdapter;
@@ -44,7 +46,10 @@ public class AnimationAdapter extends BaseQuickAdapter<Status, BaseViewHolder> {
         }
         helper.setText(R.id.tweetName, "Hoteis in Rio de Janeiro");
         String msg = "\"He was one of Australia's most of distinguished artistes, renowned for his portraits\"";
-        ((TextView) helper.getView(R.id.tweetText)).setText(SpannableStringUtils.getBuilder(msg).append("landscapes and nedes").setClickSpan(clickableSpan).create());
+        ((TextView) helper.getView(R.id.tweetText))
+                .setText(SpannableStringUtils.getBuilder(msg)
+                .append("landscapes and nedes")
+                .setClickSpan(clickableSpan).create());
         ((TextView) helper.getView(R.id.tweetText)).setMovementMethod(ClickableMovementMethod.getInstance());
         ((TextView) helper.getView(R.id.tweetText)).setFocusable(false);
         ((TextView) helper.getView(R.id.tweetText)).setClickable(false);

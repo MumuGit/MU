@@ -1,7 +1,9 @@
 package com.mu.example.mu;
 
+import android.support.v4.view.ViewConfigurationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ViewConfiguration;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
    private void test2(){
        println( "muq"+System.currentTimeMillis());
        println( "muq"+System.nanoTime());
-
    }
     private void test1() {
         Map<String,String> map=new HashMap<>();

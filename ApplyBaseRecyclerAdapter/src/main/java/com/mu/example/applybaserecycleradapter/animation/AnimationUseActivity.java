@@ -2,6 +2,7 @@ package com.mu.example.applybaserecycleradapter.animation;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.kyleduo.switchbutton.SwitchButton;
+import com.mu.example.applybaserecycleradapter.R;
 import com.mu.example.applybaserecycleradapter.data.Status;
 import com.mu.example.base_recycler_adapter.BaseQuickAdapter;
 
@@ -18,7 +21,7 @@ import com.mu.example.base_recycler_adapter.BaseQuickAdapter;
  * <p>
  * modify by AllenCoder
  */
-public class AnimationUseActivity extends Activity {
+public class AnimationUseActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private AnimationAdapter mAnimationAdapter;
     private ImageView mImgBtn;
