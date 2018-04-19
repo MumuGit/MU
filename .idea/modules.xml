@@ -27,6 +27,7 @@
       <module fileurl="file://$PROJECT_DIR$/base_recycler_adapter/base_recycler_adapter.iml" filepath="$PROJECT_DIR$/base_recycler_adapter/base_recycler_adapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/cardslide/cardslide.iml" filepath="$PROJECT_DIR$/cardslide/cardslide.iml" />
       <module fileurl="file://$PROJECT_DIR$/charts/charts.iml" filepath="$PROJECT_DIR$/charts/charts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/design_pattern/design_pattern.iml" filepath="$PROJECT_DIR$/design_pattern/design_pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/effective/effective.iml" filepath="$PROJECT_DIR$/effective/effective.iml" />
       <module fileurl="file://$PROJECT_DIR$/fine_gesture_dector/fine_gesture_dector.iml" filepath="$PROJECT_DIR$/fine_gesture_dector/fine_gesture_dector.iml" />
       <module fileurl="file://$PROJECT_DIR$/fine_recycler_adapter/fine_recycler_adapter.iml" filepath="$PROJECT_DIR$/fine_recycler_adapter/fine_recycler_adapter.iml" />
