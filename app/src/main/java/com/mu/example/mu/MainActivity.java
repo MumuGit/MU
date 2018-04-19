@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         map.put("1","fdsfasd");
         map.put("2","fdsfasd2");
         Iterator it=map.entrySet().iterator();
-        it.next();
+        it.next(); 
         it.remove();
         printMap(map);
     }
