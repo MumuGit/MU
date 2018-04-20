@@ -55,12 +55,13 @@ public class GoogleGestureDectorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gesture);
+        setContentView(R.layout.activity_gesture_1);
         gestureDetector = new GestureDetector(onGestureListener);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        super.onTouchEvent(event);
         return gestureDetector.onTouchEvent(event);
     }
 }

@@ -17,7 +17,7 @@ public class DynamicProxy implements InvocationHandler {
         /**
          * TODO 无法打印
          */
-        System.out.println("测试此变量是否是此类实例：" + ((DynamicProxy) proxy).a);
+//        System.out.println("测试此变量是否是此类实例：" + ((DynamicProxy) proxy).a);
         return result;
     }
 }
