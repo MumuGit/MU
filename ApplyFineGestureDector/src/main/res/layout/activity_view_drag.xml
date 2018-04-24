@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.mu.example.applyfinegesturedector.DragLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="#ff0000"
-    android:layout_height="200dp"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.mu.example.applyfinegesturedector.MyButton
+        android:clickable="false"
         android:id="@+id/button"
-        android:background="#fff000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#fff000"
         android:text="Hello World!"
         android:textSize="20sp" />
 
-</LinearLayout>
+</com.mu.example.applyfinegesturedector.DragLayout>

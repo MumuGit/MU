@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 
-public class FineGestureDetectorActivity extends AppCompatActivity {
+public class SwipeActivity extends AppCompatActivity {
 
     android.widget.Button button;
     protected static final String TAG = "MyButton";
