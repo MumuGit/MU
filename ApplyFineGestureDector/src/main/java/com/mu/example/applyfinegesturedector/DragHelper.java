@@ -132,7 +132,7 @@ public class DragHelper {
 
     private ScrollerCompat mScroller;
 
-    private final android.support.v4.widget.ViewDragHelper.Callback mCallback;
+    private final DragHelper.Callback mCallback;
 
     private View mCapturedView;
     private boolean mReleaseInProgress;
@@ -349,7 +349,7 @@ public class DragHelper {
      * @param cb        Callback to provide information and receive events
      * @return a new ViewDragHelper instance
      */
-    public static DragHelper create(ViewGroup forParent, android.support.v4.widget.ViewDragHelper.Callback cb) {
+    public static DragHelper create(ViewGroup forParent, DragHelper.Callback cb) {
         return new DragHelper(forParent.getContext(), forParent, cb);
     }
 
@@ -362,7 +362,7 @@ public class DragHelper {
      * @param cb          Callback to provide information and receive events
      * @return a new ViewDragHelper instance
      */
-    public static DragHelper create(ViewGroup forParent, float sensitivity, android.support.v4.widget.ViewDragHelper.Callback cb) {
+    public static DragHelper create(ViewGroup forParent, float sensitivity, DragHelper.Callback cb) {
         final DragHelper helper = create(forParent, cb);
         helper.mTouchSlop = (int) (helper.mTouchSlop * (1 / sensitivity));
         return helper;
@@ -376,7 +376,7 @@ public class DragHelper {
      * @param context   Context to initialize config-dependent params from
      * @param forParent Parent view to monitor
      */
-    private DragHelper(Context context, ViewGroup forParent, android.support.v4.widget.ViewDragHelper.Callback cb) {
+    private DragHelper(Context context, ViewGroup forParent, DragHelper.Callback cb) {
         if (forParent == null) {
             throw new IllegalArgumentException("Parent view may not be null");
         }
@@ -899,6 +899,7 @@ public class DragHelper {
      * @return true if capture was successful
      */
     boolean tryCaptureViewForDrag(View toCapture, int pointerId) {
+
         if (toCapture == mCapturedView && mActivePointerId == pointerId) {
             // Already done!
             return true;
@@ -1059,7 +1060,6 @@ public class DragHelper {
                         // Callback might have started an edge drag
                         break;
                     }
-
                     if (pastSlop && tryCaptureViewForDrag(toCapture, pointerId)) {
                         break;
                     }
@@ -1306,6 +1306,7 @@ public class DragHelper {
         if (checkHorizontal && checkVertical) {
             return dx * dx + dy * dy > mTouchSlop * mTouchSlop;
         } else if (checkHorizontal) {
+
             return Math.abs(dx) > mTouchSlop;
         } else if (checkVertical) {
             return Math.abs(dy) > mTouchSlop;

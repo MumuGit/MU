@@ -2,15 +2,20 @@ package com.mu.example.applyfinegesturedector;
 
 import android.content.Context;
 import android.support.v4.view.MotionEventCompat;
-import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
-public class DragLayout extends LinearLayout {
-    private final ViewDragHelper mDragHelper;
+public class DragLayout extends RelativeLayout {
+    private final DragHelper mDragHelper;
     private View mDragView;
+    /**
+     * 宽度
+     */
+    private int mContentLayoutWidth;
+
 
     public DragLayout(Context context) {
         this(context, null);
@@ -23,7 +28,7 @@ public class DragLayout extends LinearLayout {
 
     public DragLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        mDragHelper = ViewDragHelper.create(this, 1.0f, new DragHelperCallback());
+        mDragHelper = DragHelper.create(this, 1.0f, new DragHelperCallback());
     }
 
     @Override
@@ -35,24 +40,44 @@ public class DragLayout extends LinearLayout {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         final int action = MotionEventCompat.getActionMasked(ev);
-        if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
-            mDragHelper.cancel();
-            return false;
-        }
-        return mDragHelper.shouldInterceptTouchEvent(ev);
+//        if (action == MotionEvent.ACTION_CANCEL
+//                || action == MotionEvent.ACTION_UP) {
+//            mDragHelper.cancel();
+//            return false;
+//        }
+        boolean result
+                = mDragHelper.shouldInterceptTouchEvent(ev);
+//        boolean result1 = gestureDetector.onTouchEvent(ev);
+        System.out.println("result:" + result);
+        return false;
+    }
+
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        mContentLayoutWidth = mDragView.getMeasuredWidth();
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         mDragHelper.processTouchEvent(ev);
+        System.out.println("onTouchEvent:" + ev.getAction());
+
         return true;
     }
 
-    private class DragHelperCallback extends ViewDragHelper.Callback {
+    private class DragHelperCallback extends DragHelper.Callback {
 
         @Override
         public boolean tryCaptureView(View child, int pointerId) {
-            return true;
+            return false;
+        }
+
+        @Override
+        public int getViewHorizontalDragRange(View child) {
+            return mContentLayoutWidth;
         }
 
         @Override

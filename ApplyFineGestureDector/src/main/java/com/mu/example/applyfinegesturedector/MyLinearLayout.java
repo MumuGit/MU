@@ -12,6 +12,7 @@ public class MyLinearLayout extends LinearLayout {
 
     public MyLinearLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        setClickable(true);
     }
 
     @Override
@@ -27,7 +28,9 @@ public class MyLinearLayout extends LinearLayout {
             case MotionEvent.ACTION_UP:
                 System.out.println(TAG +"----dispatchTouchEvent ACTION_UP");
                 break;
-
+            case MotionEvent.ACTION_CANCEL:
+                System.out.println(TAG +"----dispatchTouchEvent ACTION_CANCEL");
+                break;
             default:
                 break;
         }
@@ -48,6 +51,9 @@ public class MyLinearLayout extends LinearLayout {
                 break;
             case MotionEvent.ACTION_UP:
                 System.out.println(TAG +"----onTouchEvent ACTION_UP");
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                System.out.println(TAG +"----onTouchEvent ACTION_CANCEL");
                 break;
 
             default:
