@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.mu.example.test.MyImageView
+        android:layout_centerInParent="true"
+        android:id="@+id/imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@android:color/holo_red_light"
+        android:scaleType="matrix"
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="215dp"></com.mu.example.test.MyImageView>
+
+</RelativeLayout>

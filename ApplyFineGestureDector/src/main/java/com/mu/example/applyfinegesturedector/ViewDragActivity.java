@@ -9,14 +9,12 @@ import android.widget.Toast;
 
 public class ViewDragActivity extends AppCompatActivity {
 
-    android.widget.Button button;
     protected static final String TAG = "MyButton";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_drag);
-        button = (android.widget.Button) findViewById(R.id.button);
 //        button.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

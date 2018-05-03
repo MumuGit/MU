@@ -8,108 +8,19 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
-import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-public class MyButton extends Button {
+public class MyButton extends ImageView {
     private volatile boolean handled = false;
     private static final String TAG = MyButton.class.getSimpleName();
-    private GestureDetectorCompat gestureDetector;
-    private float mScaleFactor = 1.0f;
-    private ScaleGestureDetector scaleGestureDetector;
-    private ScaleGestureDetector.OnScaleGestureListener onScaleGestureListener = new SimpleOnScaleGestureListener() {
 
-        @Override
-        public boolean onScale(ScaleGestureDetector detector) {
-            mScaleFactor *= detector.getScaleFactor();
 
-//            // Don't let the object get too small or too large.
-//            mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
-//
-//            invalidate();
-//            return true;
-//            if (handle()) {
-//                handled = true;
-//            } else {
-//                return false;
-//            }
-//            Toast.makeText(getContext(), "onScale", Toast.LENGTH_SHORT).show();
-            System.out.println("scale:" + scaleGestureDetector.getScaleFactor());
-            mScaleFactor *= scaleGestureDetector.getScaleFactor();
-
-            MyButton.this.setScaleX(mScaleFactor);
-            MyButton.this.setScaleY(mScaleFactor);
-            handled = false;
-            return true;
-        }
-    };
-    private GestureDetector.SimpleOnGestureListener onGestureListener = new GestureDetector.SimpleOnGestureListener() {
-//        @Override
-//        public boolean onDown(MotionEvent e) {
-//
-//            return true;
-//        }
-
-        @Override
-        public boolean onDoubleTap(MotionEvent e) {
-//            if (handle()) {
-//                handled = true;
-//            }
-            Toast.makeText(getContext(), "onDoubleTap", Toast.LENGTH_SHORT).show();
-            return handled;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent e) {
-//            if (handle()) {
-//                handled = true;
-//            }
-            Toast.makeText(getContext(), "onLongPress", Toast.LENGTH_SHORT).show();
-//            super.onLongPress(e);
-        }
-
-//        @Override
-//        public boolean onContextClick(MotionEvent e) {
-//            return true;
-//        }
-
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-//            if (handle()) {
-//                handled = true;
-//            } else {
-//                return false;
-//            }
-            Toast.makeText(getContext(), "onFling", Toast.LENGTH_SHORT).show();
-            handled = false;
-            return true;
-        }
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-//            if (handle()) {
-//                handled = true;
-//            }
-            return handled;
-        }
-
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-//            if (handle()) {
-//                handled = true;
-//            }
-            Toast.makeText(getContext(), "onSingleTapConfirmed", Toast.LENGTH_SHORT).show();
-
-            return handled;
-        }
-    };
 
 
     public MyButton(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        gestureDetector = new GestureDetectorCompat(context, onGestureListener);
-        scaleGestureDetector = new ScaleGestureDetector(context, onScaleGestureListener);
     }
 
     int a = 0;
@@ -122,40 +33,41 @@ public class MyButton extends Button {
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        int action = event.getAction();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                System.out.println(TAG + "----onTouchEvent ACTION_DOWN");
-                break;
-            case MotionEvent.ACTION_MOVE:
-//                a++;
-//                if (a == 2) {
-//                    return false;
-//                }
-                System.out.println(TAG + "----onTouchEvent ACTION_MOVE--" + a);
-                break;
-            case MotionEvent.ACTION_UP:
-                System.out.println(TAG + "----onTouchEvent ACTION_UP");
-                break;
-            default:
-                break;
-        }
-//        boolean result1 = gestureDetector.onTouchEvent(event);
-//        System.out.println("result1:" + result1);
-//        boolean result2 = super.onTouchEvent(event);
-//        System.out.println("result2:" + result2);
-//
-//        return result1 && result2;
-//        gestureDetector.onTouchEvent(event);
-//        scaleGestureDetector.onTouchEvent(event);
-        boolean retVal = scaleGestureDetector.onTouchEvent(event);
-        System.out.println("retVal:" + retVal);
-
-        retVal = gestureDetector.onTouchEvent(event) || retVal;
-        return retVal || super.onTouchEvent(event);
-    }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        int action = event.getAction();
+//        switch (action) {
+//            case MotionEvent.ACTION_DOWN:
+//                System.out.println(TAG + "----onTouchEvent ACTION_DOWN");
+//                break;
+//            case MotionEvent.ACTION_MOVE:
+////                a++;
+////                if (a == 2) {
+////                    return false;
+////                }
+//                System.out.println(TAG + "----onTouchEvent ACTION_MOVE--" + a);
+//                break;
+//            case MotionEvent.ACTION_UP:
+//                System.out.println(TAG + "----onTouchEvent ACTION_UP");
+//                break;
+//            default:
+//                break;
+//        }
+////        boolean result1 = gestureDetector.onTouchEvent(event);
+////        System.out.println("result1:" + result1);
+////        boolean result2 = super.onTouchEvent(event);
+////        System.out.println("result2:" + result2);
+////
+////        return result1 && result2;
+////        gestureDetector.onTouchEvent(event);
+////        scaleGestureDetector.onTouchEvent(event);
+//        boolean retVal = scaleGestureDetector.onTouchEvent(event);
+//        System.out.println("retVal:" + retVal);
+////
+////        retVal = gestureDetector.onTouchEvent(event) || retVal;
+////        return retVal || super.onTouchEvent(event);\
+//        return retVal;
+//    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {

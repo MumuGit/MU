@@ -42,6 +42,7 @@
             <option value="$PROJECT_DIR$/okhttp" />
             <option value="$PROJECT_DIR$/refresh" />
             <option value="$PROJECT_DIR$/selectMedia" />
+            <option value="$PROJECT_DIR$/test" />
             <option value="$PROJECT_DIR$/webview" />
           </set>
         </option>

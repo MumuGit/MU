@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import static android.view.MotionEvent.ACTION_DOWN;
 
-public class DragLayout extends RelativeLayout {
+public class DragLayout1 extends RelativeLayout {
     private final DragHelper mDragHelper;
     private View mDragView;
     /**
@@ -79,16 +79,16 @@ public class DragLayout extends RelativeLayout {
         }
     };
 
-    public DragLayout(Context context) {
+    public DragLayout1(Context context) {
         this(context, null);
     }
 
-    public DragLayout(Context context, AttributeSet attrs) {
+    public DragLayout1(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
 
-    public DragLayout(Context context, AttributeSet attrs, int defStyle) {
+    public DragLayout1(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mDragHelper = DragHelper.create(this, 1.0f, new DragHelperCallback());
 
