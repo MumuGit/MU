@@ -16,6 +16,7 @@
       <module fileurl="file://$PROJECT_DIR$/Kotlin/Kotlin.iml" filepath="$PROJECT_DIR$/Kotlin/Kotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/ListAndQueue/ListAndQueue.iml" filepath="$PROJECT_DIR$/ListAndQueue/ListAndQueue.iml" />
       <module fileurl="file://$PROJECT_DIR$/MU.iml" filepath="$PROJECT_DIR$/MU.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MuLog/MuLog.iml" filepath="$PROJECT_DIR$/MuLog/MuLog.iml" />
       <module fileurl="file://$PROJECT_DIR$/NetRequest/NetRequest.iml" filepath="$PROJECT_DIR$/NetRequest/NetRequest.iml" />
       <module fileurl="file://$PROJECT_DIR$/RadioGroup/RadioGroup.iml" filepath="$PROJECT_DIR$/RadioGroup/RadioGroup.iml" />
       <module fileurl="file://$PROJECT_DIR$/Retrofit2/Retrofit2.iml" filepath="$PROJECT_DIR$/Retrofit2/Retrofit2.iml" />
