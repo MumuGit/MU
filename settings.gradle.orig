@@ -1,0 +1,6 @@
+<<<<<<< Updated upstream
+include ':app', ':charts', ':webview', ':myglide', ':gaode', ':cardslide', ':Generic', ':ChildThread', ':ListAndQueue', ':design_pattern',':effective', ':refresh', ':Rxjava', ':Retrofit2', ':Dagger2', ':Kotlin', ':NetRequest', ':AscdescButton', ':selectMedia', ':Exoplayer2.x', ':GSYVideoPlayer', ':V1', ':CacheFile', ':UnderLineText', ':AddressBook', ':A8NewFeature', ':ScreenAdapter', ':okhttp', ':RadioGroup', ':ApplyBaseRecyclerAdapter', ':base_recycler_adapter', ':fine_recycler_adapter', ':material-spinner-1.0.5', ':fine_gesture_dector', ':ApplyFineGestureDector', ':design_pattern', ':design_pattern', ':test', ':okhttp', ':MuLog'
+=======
+include ':app', ':charts', ':webview', ':myglide', ':gaode', ':cardslide', ':Generic', ':ChildThread', ':ListAndQueue', ':design_pattern',':effective', ':refresh', ':Rxjava', ':Retrofit2', ':Dagger2', ':Kotlin', ':NetRequest', ':AscdescButton', ':selectMedia', ':Exoplayer2.x', ':GSYVideoPlayer', ':V1', ':CacheFile', ':UnderLineText', ':AddressBook', ':A8NewFeature', ':ScreenAdapter', ':okhttp', ':RadioGroup', ':ApplyBaseRecyclerAdapter', ':base_recycler_adapter', ':fine_recycler_adapter', ':material-spinner-1.0.5', ':fine_gesture_dector', ':ApplyFineGestureDector', ':design_pattern', ':design_pattern', ':test', ':okhttp',':ui', ':Jbox'
+
+>>>>>>> Stashed changes

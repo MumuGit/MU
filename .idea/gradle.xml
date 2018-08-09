@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/Exoplayer2.x" />
             <option value="$PROJECT_DIR$/GSYVideoPlayer" />
             <option value="$PROJECT_DIR$/Generic" />
+            <option value="$PROJECT_DIR$/Jbox" />
             <option value="$PROJECT_DIR$/Kotlin" />
             <option value="$PROJECT_DIR$/ListAndQueue" />
             <option value="$PROJECT_DIR$/MuLog" />
@@ -33,6 +34,7 @@
             <option value="$PROJECT_DIR$/base_recycler_adapter" />
             <option value="$PROJECT_DIR$/cardslide" />
             <option value="$PROJECT_DIR$/charts" />
+            <option value="$PROJECT_DIR$/customerLayout" />
             <option value="$PROJECT_DIR$/design_pattern" />
             <option value="$PROJECT_DIR$/effective" />
             <option value="$PROJECT_DIR$/fine_gesture_dector" />
@@ -44,6 +46,7 @@
             <option value="$PROJECT_DIR$/refresh" />
             <option value="$PROJECT_DIR$/selectMedia" />
             <option value="$PROJECT_DIR$/test" />
+            <option value="$PROJECT_DIR$/ui" />
             <option value="$PROJECT_DIR$/webview" />
           </set>
         </option>

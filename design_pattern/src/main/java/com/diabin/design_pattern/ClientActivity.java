@@ -75,7 +75,7 @@ public class ClientActivity extends AppCompatActivity {
         Volt220 volt220 = new Volt220();
         VoltAdapter adapter = new VoltAdapter(volt220);
         System.out.println(adapter.getVolt5());
-    }
+    } 
 
     private void composite() {
         Dir disk = new Folder("C");

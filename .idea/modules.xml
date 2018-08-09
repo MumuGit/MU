@@ -13,6 +13,7 @@
       <module fileurl="file://$PROJECT_DIR$/Exoplayer2.x/Exoplayer2.x.iml" filepath="$PROJECT_DIR$/Exoplayer2.x/Exoplayer2.x.iml" />
       <module fileurl="file://$PROJECT_DIR$/GSYVideoPlayer/GSYVideoPlayer.iml" filepath="$PROJECT_DIR$/GSYVideoPlayer/GSYVideoPlayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/Generic/Generic.iml" filepath="$PROJECT_DIR$/Generic/Generic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Jbox/Jbox.iml" filepath="$PROJECT_DIR$/Jbox/Jbox.iml" />
       <module fileurl="file://$PROJECT_DIR$/Kotlin/Kotlin.iml" filepath="$PROJECT_DIR$/Kotlin/Kotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/ListAndQueue/ListAndQueue.iml" filepath="$PROJECT_DIR$/ListAndQueue/ListAndQueue.iml" />
       <module fileurl="file://$PROJECT_DIR$/MU.iml" filepath="$PROJECT_DIR$/MU.iml" />
@@ -28,6 +29,7 @@
       <module fileurl="file://$PROJECT_DIR$/base_recycler_adapter/base_recycler_adapter.iml" filepath="$PROJECT_DIR$/base_recycler_adapter/base_recycler_adapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/cardslide/cardslide.iml" filepath="$PROJECT_DIR$/cardslide/cardslide.iml" />
       <module fileurl="file://$PROJECT_DIR$/charts/charts.iml" filepath="$PROJECT_DIR$/charts/charts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customerLayout/customerLayout.iml" filepath="$PROJECT_DIR$/customerLayout/customerLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/design_pattern/design_pattern.iml" filepath="$PROJECT_DIR$/design_pattern/design_pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/effective/effective.iml" filepath="$PROJECT_DIR$/effective/effective.iml" />
       <module fileurl="file://$PROJECT_DIR$/fine_gesture_dector/fine_gesture_dector.iml" filepath="$PROJECT_DIR$/fine_gesture_dector/fine_gesture_dector.iml" />
@@ -39,6 +41,7 @@
       <module fileurl="file://$PROJECT_DIR$/refresh/refresh.iml" filepath="$PROJECT_DIR$/refresh/refresh.iml" />
       <module fileurl="file://$PROJECT_DIR$/selectMedia/selectMedia.iml" filepath="$PROJECT_DIR$/selectMedia/selectMedia.iml" />
       <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/ui.iml" filepath="$PROJECT_DIR$/ui/ui.iml" />
       <module fileurl="file://$PROJECT_DIR$/webview/webview.iml" filepath="$PROJECT_DIR$/webview/webview.iml" />
     </modules>
   </component>
