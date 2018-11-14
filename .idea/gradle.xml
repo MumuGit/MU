@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/CacheFile" />
             <option value="$PROJECT_DIR$/ChildThread" />
             <option value="$PROJECT_DIR$/Dagger2" />
+            <option value="$PROJECT_DIR$/DataSafe" />
             <option value="$PROJECT_DIR$/Exoplayer2.x" />
             <option value="$PROJECT_DIR$/GSYVideoPlayer" />
             <option value="$PROJECT_DIR$/Generic" />
@@ -35,6 +36,7 @@
             <option value="$PROJECT_DIR$/cardslide" />
             <option value="$PROJECT_DIR$/charts" />
             <option value="$PROJECT_DIR$/customerLayout" />
+            <option value="$PROJECT_DIR$/deprecated" />
             <option value="$PROJECT_DIR$/design_pattern" />
             <option value="$PROJECT_DIR$/effective" />
             <option value="$PROJECT_DIR$/fine_gesture_dector" />

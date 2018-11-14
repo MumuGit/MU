@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/CacheFile/CacheFile.iml" filepath="$PROJECT_DIR$/CacheFile/CacheFile.iml" />
       <module fileurl="file://$PROJECT_DIR$/ChildThread/ChildThread.iml" filepath="$PROJECT_DIR$/ChildThread/ChildThread.iml" />
       <module fileurl="file://$PROJECT_DIR$/Dagger2/Dagger2.iml" filepath="$PROJECT_DIR$/Dagger2/Dagger2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataSafe/DataSafe.iml" filepath="$PROJECT_DIR$/DataSafe/DataSafe.iml" />
       <module fileurl="file://$PROJECT_DIR$/Exoplayer2.x/Exoplayer2.x.iml" filepath="$PROJECT_DIR$/Exoplayer2.x/Exoplayer2.x.iml" />
       <module fileurl="file://$PROJECT_DIR$/GSYVideoPlayer/GSYVideoPlayer.iml" filepath="$PROJECT_DIR$/GSYVideoPlayer/GSYVideoPlayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/Generic/Generic.iml" filepath="$PROJECT_DIR$/Generic/Generic.iml" />
@@ -30,6 +31,7 @@
       <module fileurl="file://$PROJECT_DIR$/cardslide/cardslide.iml" filepath="$PROJECT_DIR$/cardslide/cardslide.iml" />
       <module fileurl="file://$PROJECT_DIR$/charts/charts.iml" filepath="$PROJECT_DIR$/charts/charts.iml" />
       <module fileurl="file://$PROJECT_DIR$/customerLayout/customerLayout.iml" filepath="$PROJECT_DIR$/customerLayout/customerLayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/deprecated/deprecated.iml" filepath="$PROJECT_DIR$/deprecated/deprecated.iml" />
       <module fileurl="file://$PROJECT_DIR$/design_pattern/design_pattern.iml" filepath="$PROJECT_DIR$/design_pattern/design_pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/effective/effective.iml" filepath="$PROJECT_DIR$/effective/effective.iml" />
       <module fileurl="file://$PROJECT_DIR$/fine_gesture_dector/fine_gesture_dector.iml" filepath="$PROJECT_DIR$/fine_gesture_dector/fine_gesture_dector.iml" />
